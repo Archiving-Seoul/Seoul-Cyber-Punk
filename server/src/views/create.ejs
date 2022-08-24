@@ -43,12 +43,31 @@
 
       button.addEventListener("click", create);
 
+      async function uploadImg(file) {
+        // const formData = new FormData();
+        // formData.append("src", file);
+        // console.log("formData", formData);
+        const result = await fetch("/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: JSON.stringify(file),
+        });
+        console.log("result", result);
+        return result;
+      }
+
       async function create() {
+        const file = img.files[0];
+        uploadImg(file);
+
         const req = {
           name: name.value,
           description: description.value,
           address: address.value,
           category: category.value,
+          imgURL: img.value,
         };
         const res = await fetch("/", {
           method: "POST",
@@ -58,6 +77,7 @@
           body: JSON.stringify(req),
         });
         console.log("post응답", res);
+        console.log("formdata", formData);
       }
     </script>
   </body>

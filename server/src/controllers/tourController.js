@@ -1,4 +1,4 @@
-import { tourModel, TourModel } from "../db/index.js";
+import { tourModel } from "../db/index.js";
 
 const tourController = {
   output: (req, res) => {

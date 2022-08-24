@@ -4,10 +4,6 @@ import { CategorySchema } from "./category-schema.js";
 
 const TourSchema = new Schema(
   {
-    tourId: {
-      type: Schema.Types.ObjectId,
-      // required: true,
-    },
     name: {
       type: String,
       required: true,
@@ -22,7 +18,7 @@ const TourSchema = new Schema(
     },
     imgURL: {
       type: String,
-      // required: true,
+      required: true,
     },
     category: {
       type: String,
