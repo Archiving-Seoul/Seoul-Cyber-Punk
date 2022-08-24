@@ -10,7 +10,7 @@
   <body>
     <div>
       <label>이름</label>
-      <input type="text" id="id" />
+      <input type="text" id="name" />
     </div>
     <div>
       <label>설명</label>
@@ -22,11 +22,11 @@
     </div>
     <div>
       <label>이미지</label>
-      <input type="text" id="img" />
+      <input type="file" id="img" />
     </div>
     <div>
       <label>카테고리</label>
-      <select>
+      <select id="category">
         <option>popular</option>
         <option>funny</option>
         <option>calm</option>
@@ -35,11 +35,21 @@
     <button>create</button>
     <script>
       const button = document.querySelector("button");
-      const id = document.querySelector("#id");
+      const name = document.querySelector("#name");
+      const description = document.querySelector("#description");
+      const address = document.querySelector("#address");
+      const img = document.querySelector("#img");
+      const category = document.querySelector("#category");
+
       button.addEventListener("click", create);
 
       async function create() {
-        const req = { id: id.value };
+        const req = {
+          name: name.value,
+          description: description.value,
+          address: address.value,
+          category: category.value,
+        };
         const res = await fetch("/", {
           method: "POST",
           headers: {
@@ -47,7 +57,7 @@
           },
           body: JSON.stringify(req),
         });
-        console.log(res);
+        console.log("post응답", res);
       }
     </script>
   </body>

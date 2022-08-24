@@ -1,6 +1,6 @@
 const multer = require("multer");
 const multerS3 = require("multer-s3");
-import { S3 } from "@aws-sdk/client-s3";
+import {S3} from "@aws-sdk/client-s3";
 
 const s3 = new S3({
   credentials: {
@@ -20,10 +20,11 @@ const upload = multer({
       cb(
         null,
         "images/origin/" + Date.now() + "." + file.originalname.split(".").pop()
+        //`${Date.now()}_${file.originalname}`
       );
     },
     acl: "public-read-write",
   }),
 });
 
-module.exports = upload;
+export {upload};
