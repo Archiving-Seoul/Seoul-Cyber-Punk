@@ -1,4 +1,4 @@
-import {tourModel} from "../db/models/tour-model";
+import { tourModel } from "../db/models/tour-model.js";
 
 const tourController = {
   output: (req, res) => {
@@ -11,4 +11,4 @@ const tourController = {
   },
 };
 
-export {tourController};
+export { tourController };

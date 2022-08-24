@@ -1,5 +1,6 @@
-import {Schema} from "mongoose";
-import {CategorySchema} from "./category-schema";
+import mongoose from "mongoose";
+const { Schema } = mongoose;
+import { CategorySchema } from "./category-schema.js";
 
 const TourSchema = new Schema(
   {
@@ -31,4 +32,4 @@ const TourSchema = new Schema(
   }
 );
 
-export {TourSchema};
+export { TourSchema };

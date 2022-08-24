@@ -1,4 +1,5 @@
-import {Schema} from "mongoose";
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const CategorySchema = new Schema(
   {
@@ -17,4 +18,4 @@ const CategorySchema = new Schema(
   }
 );
 
-export {CategorySchema};
+export { CategorySchema };

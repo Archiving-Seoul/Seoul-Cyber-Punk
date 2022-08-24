@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "@babel/node": "^7.18.10",
