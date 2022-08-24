@@ -6,7 +6,7 @@ const TourSchema = new Schema(
   {
     tourId: {
       type: Schema.Types.ObjectId,
-      required: true,
+      // required: true,
     },
     name: {
       type: String,
@@ -22,9 +22,12 @@ const TourSchema = new Schema(
     },
     imgURL: {
       type: String,
+      // required: true,
+    },
+    category: {
+      type: String,
       required: true,
     },
-    category: [CategorySchema],
   },
   {
     collection: "tourAttraction",

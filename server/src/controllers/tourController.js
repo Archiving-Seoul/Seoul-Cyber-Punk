@@ -1,4 +1,4 @@
-import { tourModel } from "../db/models/tour-model.js";
+import { tourModel, TourModel } from "../db/index.js";
 
 const tourController = {
   output: (req, res) => {
@@ -6,7 +6,8 @@ const tourController = {
   },
   create: async (req, res) => {
     const content = req.body;
-    const newContent = await tourModel.create(content);
+    console.log("content", content);
+    const newContent = await tourModel.add(content);
     res.json(newContent);
   },
 };

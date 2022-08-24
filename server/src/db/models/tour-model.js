@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import { TourSchema } from "../schemas/tour-schema.js";
 
 const { model } = mongoose;
-const Tour = model("tour", TourSchema);
+const Tour = model("tourAttraction", TourSchema);
 
 export class TourModel {
-  async create(tourInfo) {
+  async add(tourInfo) {
     return await Tour.create(tourInfo);
   }
 }
