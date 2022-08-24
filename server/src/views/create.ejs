@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label>이름</label>
+      <input type="text" id="id" />
+    </div>
+    <div>
+      <label>설명</label>
+      <input type="text" id="description" />
+    </div>
+    <div>
+      <label>주소</label>
+      <input type="text" id="address" />
+    </div>
+    <div>
+      <label>이미지</label>
+      <input type="text" id="img" />
+    </div>
+    <div>
+      <label>카테고리</label>
+      <select>
+        <option>popular</option>
+        <option>funny</option>
+        <option>calm</option>
+      </select>
+    </div>
+    <button>create</button>
+    <script>
+      const button = document.querySelector("button");
+      const id = document.querySelector("#id");
+      button.addEventListener("click", create);
+
+      async function create() {
+        const req = { id: id.value };
+        const res = await fetch("/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(req),
+        });
+        console.log(res);
+      }
+    </script>
+  </body>
+</html>

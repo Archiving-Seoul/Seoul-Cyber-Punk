@@ -1,0 +1,29 @@
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+import { S3 } from "@aws-sdk/client-s3";
+
+const s3 = new S3({
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  },
+  region: process.env.REGION,
+});
+
+const bucket = process.env.BUCKET || "none";
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: bucket,
+    key: function (req, file, cb) {
+      cb(
+        null,
+        "images/origin/" + Date.now() + "." + file.originalname.split(".").pop()
+      );
+    },
+    acl: "public-read-write",
+  }),
+});
+
+module.exports = upload;
