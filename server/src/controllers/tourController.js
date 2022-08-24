@@ -6,9 +6,13 @@ const tourController = {
   },
   create: async (req, res) => {
     const content = req.body;
-    console.log("content", content);
     const newContent = await tourModel.add(content);
     res.json(newContent);
+  },
+  upload: async (req, res) => {
+    const result = req.body;
+    console.log("업로드결과", result);
+    res.json(result);
   },
 };
 

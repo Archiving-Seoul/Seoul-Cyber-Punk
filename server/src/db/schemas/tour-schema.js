@@ -18,7 +18,7 @@ const TourSchema = new Schema(
     },
     imgURL: {
       type: String,
-      required: true,
+      // required: true,
     },
     category: {
       type: String,
