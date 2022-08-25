@@ -8,60 +8,41 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <label>이름</label>
-      <input type="text" id="name" />
-    </div>
-    <div>
-      <label>설명</label>
-      <input type="text" id="description" />
-    </div>
-    <div>
-      <label>주소</label>
-      <input type="text" id="address" />
-    </div>
+
+
     <div>
       <label>이미지</label>
       <input type="file" id="img" />
     </div>
-    <div>
-      <label>카테고리</label>
-      <div id="categories">
-        <input type="checkbox" id="popular" name="category"></input>
-        <label for="popular">popular</label>
-
-        <input type="checkbox" id="funny" name="category"></input>
-        <label for="funny">funny</label>
-
-        <input type="checkbox" id="calm" name="category"></input>
-        <label for="calm">calm</label>
-
-        <input type="checkbox" id="movie" name="category"></input>
-        <label for="movie">movie</label>
-
-        <input type="checkbox" id="mz" name="category"></input>
-        <label for="mz">mz</label>
-
-        <input type="checkbox" id="traditional" name="category"></input>
-        <label for="traditional">traditional</label>
-      </div>
+<div>
+  <label>카테고리</label>
+  <select id="mood">
+    <option>DAY</option>
+    <option>NIGHT</option>
+    <option>OLD</option>
+    <option>NEW</option>
+  </select>
+</div>
+<div>
+  <label>사이즈</label>
+  <select id="size">
+    <option>S</option>
+    <option>L</option>
+    <option>BackGround</option>
+  </select>
+</div>
+<button>Create</button>
     </div>
-    <button>create</button>
+    
     <script defer>
-      const button = document.querySelector("button");
-      const name = document.querySelector("#name");
-      const description = document.querySelector("#description");
-      const address = document.querySelector("#address");
-      const img = document.querySelector("#img");
-      const category = document.getElementsByName("category");
-      let categories = [];
 
-      // button.addEventListener("click", create);
+      const img = document.querySelector("#img");
+      const mode = document.querySelector('#mood')
+      const size = document.querySelector('#size')
+      const button = document.querySelector('button')
+      button.addEventListener('click',create)
       img.addEventListener("change", addImg);
       
-      // for(let i=0; i<category.length; i++) {
-      //   category[i].addEventListener("click", getChecked)
-      // }
 
       async function addImg() {
         const formData = new FormData();
@@ -70,29 +51,18 @@
           method: "POST",
           body: formData,
         });
-        // const data = await res.json();
-        // const imgURL = data.imgURL;
-        // window.localStorage.setItem("imgURL", imgURL);
+        const data = await res.json();
+        const imgURL = data.imgURL;
+        window.localStorage.setItem("imgURL", imgURL);
       }
 
-      
-      function getChecked(e) {
-        let categoryname = String(e.target.id);
-        if(e.target.checked) {
-          categories.push(categoryname)
-        } else {
-          categories = categories.filter(ele => ele !== categoryname)
-        }
-      }
 
       async function create() {
         const url = window.localStorage.getItem("imgURL");
         const req = {
-          name: name.value,
-          description: description.value,
-          address: address.value,
-          category: categories,
-          imgURL: url,
+          mood: mood.value,
+          size: size.value,
+          imgURL: url
         };
         const res = await fetch("/create", {
           method: "POST",
