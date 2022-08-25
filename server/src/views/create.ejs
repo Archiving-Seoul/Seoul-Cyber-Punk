@@ -33,7 +33,7 @@
       </select>
     </div>
     <button>create</button>
-    <script>
+    <script defer>
       const button = document.querySelector("button");
       const name = document.querySelector("#name");
       const description = document.querySelector("#description");
@@ -42,42 +42,38 @@
       const category = document.querySelector("#category");
 
       button.addEventListener("click", create);
+      img.addEventListener("change", addImg);
 
-      async function uploadImg(file) {
-        // const formData = new FormData();
-        // formData.append("src", file);
-        // console.log("formData", formData);
-        const result = await fetch("/", {
+      async function addImg() {
+        const formData = new FormData();
+        await formData.append("src", img.files[0]);
+        const res = await fetch("/", {
           method: "POST",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          body: JSON.stringify(file),
+          body: formData,
         });
-        console.log("result", result);
-        return result;
+        const data = await res.json();
+        const imgURL = data.imgURL;
+        window.localStorage.setItem("imgURL", imgURL);
       }
 
       async function create() {
-        const file = img.files[0];
-        uploadImg(file);
-
+        const url = window.localStorage.getItem("imgURL");
         const req = {
           name: name.value,
           description: description.value,
           address: address.value,
           category: category.value,
-          imgURL: img.value,
+          imgURL: url,
         };
-        const res = await fetch("/", {
+        const res = await fetch("/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(req),
         });
-        console.log("post응답", res);
-        console.log("formdata", formData);
+        const data = await res.json();
+        console.log("post응답", data);
       }
     </script>
   </body>
