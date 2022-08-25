@@ -12,6 +12,7 @@ const tourController = {
   upload: async (req, res) => {
     const file = req.file;
     const imgURL = { imgURL: file.location };
+    await tourModel.add(imgURL);
     res.status(200).json(imgURL);
   },
 };

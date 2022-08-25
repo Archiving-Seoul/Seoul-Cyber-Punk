@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
-import {CategorySchema} from "./category-schema.js";
+const { Schema } = mongoose;
 
 const TourSchema = new Schema(
   {
@@ -20,15 +19,15 @@ const TourSchema = new Schema(
       type: String,
       // required: true,
     },
-    category: {
-      type: Array,
-      // required: true,
-    },
+    // category: {
+    //   type: Array,
+    //   // required: true,
+    // },
   },
   {
-    collection: "tourAttraction",
+    collection: "imageURL",
     timestamps: true,
   }
 );
 
-export {TourSchema};
+export { TourSchema };

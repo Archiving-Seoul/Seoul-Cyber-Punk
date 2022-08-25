@@ -56,13 +56,12 @@
       const category = document.getElementsByName("category");
       let categories = [];
 
-      button.addEventListener("click", create);
+      // button.addEventListener("click", create);
       img.addEventListener("change", addImg);
-      console.log(category);
       
-      for(let i=0; i<category.length; i++) {
-        category[i].addEventListener("click", getChecked)
-      }
+      // for(let i=0; i<category.length; i++) {
+      //   category[i].addEventListener("click", getChecked)
+      // }
 
       async function addImg() {
         const formData = new FormData();
@@ -71,9 +70,9 @@
           method: "POST",
           body: formData,
         });
-        const data = await res.json();
-        const imgURL = data.imgURL;
-        window.localStorage.setItem("imgURL", imgURL);
+        // const data = await res.json();
+        // const imgURL = data.imgURL;
+        // window.localStorage.setItem("imgURL", imgURL);
       }
 
       
