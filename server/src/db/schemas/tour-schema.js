@@ -6,15 +6,15 @@ const TourSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      // required: true,
     },
     address: {
       type: String,
-      required: true,
+      // required: true,
     },
     description: {
       type: String,
-      required: true,
+      // required: true,
     },
     imgURL: {
       type: String,
@@ -22,7 +22,7 @@ const TourSchema = new Schema(
     },
     category: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   {

@@ -41,7 +41,7 @@
       const img = document.querySelector("#img");
       const category = document.querySelector("#category");
 
-      // button.addEventListener("click", addImg);
+      button.addEventListener("click", create);
       img.addEventListener("change", addImg);
 
       async function addImg() {
@@ -51,18 +51,19 @@
           method: "POST",
           body: formData,
         });
-        console.log("res", res);
+        const data = await res.json();
+        const imgURL = data.imgURL;
+        window.localStorage.setItem("imgURL", imgURL);
       }
 
       async function create() {
-        const imgResult = await addImg();
-        console.log("imgResult", imgResult);
+        const url = window.localStorage.getItem("imgURL");
         const req = {
           name: name.value,
           description: description.value,
           address: address.value,
           category: category.value,
-          imgURL: imgResult,
+          imgURL: url,
         };
         const res = await fetch("/create", {
           method: "POST",
@@ -71,7 +72,8 @@
           },
           body: JSON.stringify(req),
         });
-        console.log("post응답", res);
+        const data = await res.json();
+        console.log("post응답", data);
       }
     </script>
   </body>
