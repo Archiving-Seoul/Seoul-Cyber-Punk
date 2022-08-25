@@ -11,38 +11,36 @@
 
 
     <div>
-      <label>이미지</label>
+      <label>메인</label>
       <input type="file" id="img" />
     </div>
+    <div>
+      <label>썸네일</label>
+      <input type="file" id="img2" />
+    </div>
 <div>
-  <label>카테고리</label>
+  <label>무드</label>
   <select id="mood">
-    <option>HOME</option>
     <option>DAY</option>
     <option>NIGHT</option>
     <option>OLD</option>
     <option>NEW</option>
   </select>
 </div>
-<div>
-  <label>사이즈</label>
-  <select id="size">
-    <option>S</option>
-    <option>L</option>
-    <option>BackGround</option>
-  </select>
-</div>
+
 <button>Create</button>
     </div>
     
     <script defer>
 
       const img = document.querySelector("#img");
+      const img2 = document.querySelector("#img2");
       const mode = document.querySelector('#mood')
-      const size = document.querySelector('#size')
+
       const button = document.querySelector('button')
       button.addEventListener('click',create)
       img.addEventListener("change", addImg);
+      img2.addEventListener("change", addImg2);
       
 
       async function addImg() {
@@ -54,16 +52,28 @@
         });
         const data = await res.json();
         const imgURL = data.imgURL;
-        window.localStorage.setItem("imgURL", imgURL);
+        window.localStorage.setItem("mainURL", imgURL);
+      }
+      async function addImg2() {
+        const formData = new FormData();
+        await formData.append("src", img2.files[0]);
+        const res = await fetch("/img", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        const imgURL = data.imgURL;
+        window.localStorage.setItem("someURL", imgURL);
       }
 
 
       async function create() {
-        const url = window.localStorage.getItem("imgURL");
+        const mainURL = window.localStorage.getItem("mainURL");
+        const someURL = window.localStorage.getItem("someURL");
         const req = {
           mood: mood.value,
-          size: size.value,
-          imgURL: url
+          mainURL,
+          someURL
         };
         const res = await fetch("/create", {
           method: "POST",

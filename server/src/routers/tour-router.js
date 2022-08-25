@@ -6,6 +6,7 @@ const tourRouter = Router();
 
 tourRouter.get("/", tourController.output);
 tourRouter.post("/", upload.single("src"), tourController.upload);
+tourRouter.post("/img", upload.single("src"), tourController.upload);
 tourRouter.post("/create", tourController.create);
 
 export { tourRouter };

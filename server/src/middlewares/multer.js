@@ -21,7 +21,7 @@ const upload = multer({
     key: function (req, file, cb) {
       cb(
         null,
-        "onlyimage/" + Date.now() + "." + file.originalname.split(".").pop()
+        "about/" + Date.now() + "." + file.originalname.split(".").pop()
         //`${Date.now()}_${file.originalname}`
       );
     },

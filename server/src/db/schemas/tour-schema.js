@@ -15,12 +15,13 @@ const TourSchema = new Schema(
     //   type: String,
     //   // required: true,
     // },
-    imgURL: {
+    mainURL: {
       type: String,
       // required: true,
     },
-    size: {
+    someURL: {
       type: String,
+      // required: true,
     },
     mood: {
       type: String,
@@ -31,7 +32,7 @@ const TourSchema = new Schema(
     // },
   },
   {
-    collection: "imageURL",
+    collection: "about",
     timestamps: true,
   }
 );
