@@ -11,7 +11,12 @@ const tourController = {
   },
   upload: async (req, res) => {
     const file = req.file;
-    const imgURL = { imgURL: file.location };
+    const imgURL = { mainURL: file.location };
+    res.status(200).json(imgURL);
+  },
+  uploadSub: async (req, res) => {
+    const file = req.file;
+    const imgURL = { subURL: file.location };
     res.status(200).json(imgURL);
   },
 };

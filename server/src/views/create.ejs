@@ -39,11 +39,11 @@
 
       const button = document.querySelector('button')
       button.addEventListener('click',create)
-      img.addEventListener("change", addImg);
-      img2.addEventListener("change", addImg2);
+      img.addEventListener("change", addMainImg);
+      img2.addEventListener("change", addSubImg);
       
 
-      async function addImg() {
+      async function addMainImg() {
         const formData = new FormData();
         await formData.append("src", img.files[0]);
         const res = await fetch("/", {
@@ -51,10 +51,11 @@
           body: formData,
         });
         const data = await res.json();
-        const imgURL = data.imgURL;
-        window.localStorage.setItem("mainURL", imgURL);
+        const mainURL = data.mainURL;
+        window.localStorage.setItem("mainURL", mainURL);
       }
-      async function addImg2() {
+
+      async function addSubImg() {
         const formData = new FormData();
         await formData.append("src", img2.files[0]);
         const res = await fetch("/img", {
@@ -62,18 +63,21 @@
           body: formData,
         });
         const data = await res.json();
-        const imgURL = data.imgURL;
-        window.localStorage.setItem("someURL", imgURL);
+        const subURL = data.subURL;
+        window.localStorage.setItem("subURL", subURL);
       }
+
+
 
 
       async function create() {
         const mainURL = window.localStorage.getItem("mainURL");
-        const someURL = window.localStorage.getItem("someURL");
+        const subURL = window.localStorage.getItem("subURL");
+
         const req = {
           mood: mood.value,
           mainURL,
-          someURL
+          subURL
         };
         const res = await fetch("/create", {
           method: "POST",
