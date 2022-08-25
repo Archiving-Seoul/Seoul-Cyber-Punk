@@ -26,11 +26,25 @@
     </div>
     <div>
       <label>카테고리</label>
-      <select id="category">
-        <option>popular</option>
-        <option>funny</option>
-        <option>calm</option>
-      </select>
+      <div id="categories">
+        <input type="checkbox" id="popular" name="category"></input>
+        <label for="popular">popular</label>
+
+        <input type="checkbox" id="funny" name="category"></input>
+        <label for="funny">funny</label>
+
+        <input type="checkbox" id="calm" name="category"></input>
+        <label for="calm">calm</label>
+
+        <input type="checkbox" id="movie" name="category"></input>
+        <label for="movie">movie</label>
+
+        <input type="checkbox" id="mz" name="category"></input>
+        <label for="mz">mz</label>
+
+        <input type="checkbox" id="traditional" name="category"></input>
+        <label for="traditional">traditional</label>
+      </div>
     </div>
     <button>create</button>
     <script defer>
@@ -39,10 +53,16 @@
       const description = document.querySelector("#description");
       const address = document.querySelector("#address");
       const img = document.querySelector("#img");
-      const category = document.querySelector("#category");
+      const category = document.getElementsByName("category");
+      let categories = [];
 
       button.addEventListener("click", create);
       img.addEventListener("change", addImg);
+      console.log(category);
+      
+      for(let i=0; i<category.length; i++) {
+        category[i].addEventListener("click", getChecked)
+      }
 
       async function addImg() {
         const formData = new FormData();
@@ -56,13 +76,23 @@
         window.localStorage.setItem("imgURL", imgURL);
       }
 
+      
+      function getChecked(e) {
+        let categoryname = String(e.target.id);
+        if(e.target.checked) {
+          categories.push(categoryname)
+        } else {
+          categories = categories.filter(ele => ele !== categoryname)
+        }
+      }
+
       async function create() {
         const url = window.localStorage.getItem("imgURL");
         const req = {
           name: name.value,
           description: description.value,
           address: address.value,
-          category: category.value,
+          category: categories,
           imgURL: url,
         };
         const res = await fetch("/create", {

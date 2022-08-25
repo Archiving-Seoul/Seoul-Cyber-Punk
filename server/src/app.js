@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { tourRouter } from "./routers/tour-router.js";
+import {tourRouter} from "./routers/tour-router.js";
 import bodyParser from "body-parser";
 
 const app = express();
@@ -16,10 +16,10 @@ app.use(
 app.set("views", "./src/views");
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/", tourRouter);
 // app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 
-export { app };
+export {app};
