@@ -17,6 +17,8 @@ function GallerySlider() {
             moveLeft={moveLeft}
             onClick={() => {
               setMoveLeft(true);
+              photoBoxRef1.current.style.transform = "translateX(-1326px)";
+              photoBoxRef2.current.style.transform = "translateX(-1326px)";
             }}
           >
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -43,7 +45,7 @@ function GallerySlider() {
             <div>17</div>
             <div>18</div>
           </PhotoBox>
-          {/* <PhotoBox ref={photoBoxRef2}>
+          <PhotoBox ref={photoBoxRef2}>
             <div>19</div>
             <div>20</div>
             <div>21</div>
@@ -62,13 +64,15 @@ function GallerySlider() {
             <div>34</div>
             <div>35</div>
             <div>36</div>
-          </PhotoBox> */}
+          </PhotoBox>
         </PhotoContainer>
         <ButtonBox>
           <RightButton
             moveLeft={moveLeft}
             onClick={() => {
               setMoveLeft(false);
+              photoBoxRef1.current.style.transform = "translateX(1px)";
+              photoBoxRef2.current.style.transform = "translateX(1px)";
             }}
           >
             <FontAwesomeIcon icon={faArrowRight} />
@@ -90,8 +94,8 @@ const GalleryContainer = styled.div`
 
 const PhotoContainer = styled.div`
   width: 100%;
-  background-color: white;
   display: flex;
+  gap: 20px;
   overflow: hidden;
 `;
 
@@ -102,12 +106,13 @@ const PhotoBox = styled.div`
   row-gap: 44px;
   column-gap: 55px;
   padding: 44px 0;
-  border: 3px solid blue;
+  background-color: black;
+  /* border: 3px solid blue; */
+  transition: transform 1.3s ease-out 0.1s;
 
   div {
     width: 172px;
     height: 283px;
-    border: 1px solid black;
     text-align: center;
     background-color: lightpink;
   }
