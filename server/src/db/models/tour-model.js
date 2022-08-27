@@ -1,5 +1,5 @@
 import {model} from "mongoose";
-import {TourSchema} from "../schemas/tour-schema.js";
+import {TourSchema} from "../schemas/tour-schema";
 
 const Tour = model("tourAttraction", TourSchema);
 
