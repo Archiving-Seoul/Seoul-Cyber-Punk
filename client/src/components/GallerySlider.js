@@ -4,14 +4,17 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import { useRef, useState } from "react";
 import Photo from "./Photo";
+import EnlargePhoto from "../components/EnlargePhoto";
 
 function GallerySlider({ imgData }) {
   const [moveLeft, setMoveLeft] = useState(false);
+  const [clickedImgURL, setClickedImgURL] = useState("");
   const photoBoxRef1 = useRef();
   const photoBoxRef2 = useRef();
 
   return (
     <div>
+      <EnlargePhoto mainURL={clickedImgURL} />
       <GalleryContainer moveLeft={moveLeft}>
         <ButtonBox>
           <LeftButton
@@ -28,12 +31,26 @@ function GallerySlider({ imgData }) {
         <PhotoContainer>
           <PhotoBox ref={photoBoxRef1}>
             {imgData.oldMood.map((el) => {
-              return <Photo mainURL={el.mainURL} subURL={el.subURL} />;
+              return (
+                <Photo
+                  key={el._id}
+                  subURL={el.subURL}
+                  mainURL={el.mainURL}
+                  setClickedImgURL={setClickedImgURL}
+                />
+              );
             })}
           </PhotoBox>
           <PhotoBox ref={photoBoxRef2}>
             {imgData.newMood.map((el) => {
-              return <Photo mainURL={el.mainURL} subURL={el.subURL} />;
+              return (
+                <Photo
+                  key={el._id}
+                  subURL={el.subURL}
+                  mainURL={el.mainURL}
+                  setClickedImgURL={setClickedImgURL}
+                />
+              );
             })}
           </PhotoBox>
         </PhotoContainer>

@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-function Photo({ mainURL, subURL }) {
+function Photo({ subURL, mainURL, setClickedImgURL }) {
   return (
     <>
-      <div>
+      <div
+        onClick={() => {
+          setClickedImgURL(mainURL);
+        }}
+      >
         <Img src={subURL} />
       </div>
     </>
