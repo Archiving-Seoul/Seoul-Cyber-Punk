@@ -1,10 +1,6 @@
 import styled from "styled-components";
 function EnlargePhoto({ mainURL }) {
-  return (
-    <Container>
-      <Img src={mainURL} />
-    </Container>
-  );
+  return <Container>{mainURL ? <Img src={mainURL} /> : <div></div>}</Container>;
 }
 
 const Container = styled.section`
