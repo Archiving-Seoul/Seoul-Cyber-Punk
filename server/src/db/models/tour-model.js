@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-import { TourSchema } from "../schemas/tour-schema.js";
+import {model} from "mongoose";
+import {TourSchema} from "../schemas/tour-schema";
 
-const { model } = mongoose;
 const Tour = model("tourAttraction", TourSchema);
 
 export class TourModel {
@@ -12,4 +11,4 @@ export class TourModel {
 
 const tourModel = new TourModel();
 
-export { tourModel };
+export {tourModel};

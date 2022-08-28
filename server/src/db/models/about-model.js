@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { AboutSchema } from "../schemas/about-schema.js";
+import { AboutSchema } from "../schemas/about-schema";
 
 const { model } = mongoose;
 const About = model("about", AboutSchema);

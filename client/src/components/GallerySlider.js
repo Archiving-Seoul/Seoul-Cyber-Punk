@@ -30,28 +30,30 @@ function GallerySlider({ imgData }) {
         </ButtonBox>
         <PhotoContainer>
           <PhotoBox ref={photoBoxRef1}>
-            {imgData.oldMood.map((el) => {
-              return (
-                <Photo
-                  key={el._id}
-                  subURL={el.subURL}
-                  mainURL={el.mainURL}
-                  setClickedImgURL={setClickedImgURL}
-                />
-              );
-            })}
+            {imgData.oldMood &&
+              imgData.oldMood.map((el) => {
+                return (
+                  <Photo
+                    key={el._id}
+                    subURL={el.subURL}
+                    mainURL={el.mainURL}
+                    setClickedImgURL={setClickedImgURL}
+                  />
+                );
+              })}
           </PhotoBox>
           <PhotoBox ref={photoBoxRef2}>
-            {imgData.newMood.map((el) => {
-              return (
-                <Photo
-                  key={el._id}
-                  subURL={el.subURL}
-                  mainURL={el.mainURL}
-                  setClickedImgURL={setClickedImgURL}
-                />
-              );
-            })}
+            {imgData.newMood &&
+              imgData.newMood.map((el) => {
+                return (
+                  <Photo
+                    key={el._id}
+                    subURL={el.subURL}
+                    mainURL={el.mainURL}
+                    setClickedImgURL={setClickedImgURL}
+                  />
+                );
+              })}
           </PhotoBox>
         </PhotoContainer>
         <ButtonBox>

@@ -1,4 +1,4 @@
-import { aboutModel } from "../db/index.js";
+import { aboutModel } from "../db";
 
 const aboutController = {
   getInfo: async (req, res) => {

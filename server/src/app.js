@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
-import { tourRouter } from "./routers/tour-router.js";
-import { aboutRouter } from "./routers/about-router.js";
+import { tourRouter } from "./routers/tour-router";
+import { aboutRouter } from "./routers/about-router";
+
 import bodyParser from "body-parser";
 
 const app = express();

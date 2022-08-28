@@ -8,7 +8,7 @@ function About() {
   useEffect(() => {
     (async () => {
       const mood = await getAllInfo();
-      setImgData(mood);
+      await setImgData(mood);
     })();
   }, []);
 

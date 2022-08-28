@@ -1,4 +1,4 @@
-import { tourModel } from "../db/index.js";
+import {tourModel} from "../db/index";
 
 const tourController = {
   output: (req, res) => {
@@ -11,14 +11,14 @@ const tourController = {
   },
   upload: async (req, res) => {
     const file = req.file;
-    const imgURL = { mainURL: file.location };
+    const imgURL = {mainURL: file.location};
     res.status(200).json(imgURL);
   },
   uploadSub: async (req, res) => {
     const file = req.file;
-    const imgURL = { subURL: file.location };
+    const imgURL = {subURL: file.location};
     res.status(200).json(imgURL);
   },
 };
 
-export { tourController };
+export {tourController};
