@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import Photo from "./Photo";
 import EnlargePhoto from "./EnlargePhoto";
 
-function GallerySlider({ imgData }) {
+function GallerySlider({ firstImg, secondImg }) {
   const [moveLeft, setMoveLeft] = useState(false);
   const [clickedImgURL, setClickedImgURL] = useState("");
   const photoBoxRef1 = useRef();
@@ -30,8 +30,8 @@ function GallerySlider({ imgData }) {
         </ButtonBox>
         <PhotoContainer>
           <PhotoBox ref={photoBoxRef1}>
-            {imgData.oldMood &&
-              imgData.oldMood.map((el) => {
+            {firstImg &&
+              firstImg.map((el) => {
                 return (
                   <Photo
                     key={el._id}
@@ -43,8 +43,8 @@ function GallerySlider({ imgData }) {
               })}
           </PhotoBox>
           <PhotoBox ref={photoBoxRef2}>
-            {imgData.newMood &&
-              imgData.newMood.map((el) => {
+            {secondImg &&
+              secondImg.map((el) => {
                 return (
                   <Photo
                     key={el._id}

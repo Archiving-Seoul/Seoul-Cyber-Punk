@@ -70,7 +70,7 @@ const TitleText = styled.h1`
   margin: 0;
   font-size: 98px;
   font-weight: 400;
-  color: red;
+  color: #ff0000;
   line-height: 180px;
   text-align: center;
   font-family: "Stretch Pro Regular", sans-serif;

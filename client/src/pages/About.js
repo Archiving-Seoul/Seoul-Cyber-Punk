@@ -1,7 +1,10 @@
 import AboutMain from "../components/about/AboutMain";
 import AboutIntroMap from "../components/about/aboutIntroMap/AboutIntroMap";
 import AboutDescription from "../components/about/AboutDescription";
+import OldNewMain from "../components/about/OldNewMain";
+import DayNightMain from "../components/about/DayNightMain";
 import GallerySlider from "../components/about/gallerySlider/GallerySlider";
+import Footer from "../components/about/Footer";
 import { useEffect, useState } from "react";
 import * as Api from "../api.js";
 
@@ -34,7 +37,11 @@ function About() {
       <AboutMain />
       <AboutIntroMap />
       <AboutDescription />
-      <GallerySlider imgData={imgData} />
+      <OldNewMain />
+      <GallerySlider firstImg={imgData.oldMood} secondImg={imgData.newMood} />
+      <DayNightMain />
+      <GallerySlider firstImg={imgData.dayMood} secondImg={imgData.nightMood} />
+      <Footer />
     </>
   );
 }
