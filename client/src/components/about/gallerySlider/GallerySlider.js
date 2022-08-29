@@ -14,7 +14,7 @@ function GallerySlider({ firstImg, secondImg }) {
 
   return (
     <>
-      <EnlargePhoto mainURL={clickedImgURL} />
+      <EnlargePhoto mainURL={clickedImgURL} firstImg={firstImg} />
       <GalleryContainer moveLeft={moveLeft}>
         <ButtonBox>
           <LeftButton

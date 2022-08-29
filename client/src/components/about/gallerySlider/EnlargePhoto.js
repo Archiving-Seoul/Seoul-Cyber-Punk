@@ -1,6 +1,16 @@
 import styled from "styled-components";
-function EnlargePhoto({ mainURL }) {
-  return <Container>{mainURL ? <Img src={mainURL} /> : <div></div>}</Container>;
+import { useRef } from "react";
+function EnlargePhoto({ mainURL, firstImg }) {
+  let firstPhoto = useRef();
+  if (firstImg) {
+    firstPhoto = firstImg[0].mainURL;
+  }
+
+  return (
+    <Container>
+      {mainURL && firstImg ? <Img src={mainURL} /> : <Img src={firstPhoto} />}
+    </Container>
+  );
 }
 
 const Container = styled.section`
