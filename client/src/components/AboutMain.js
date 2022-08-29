@@ -40,6 +40,7 @@ const NavBar = styled.nav`
   right: 44px;
   top: 44px;
   width: 268px;
+  color: white;
 
   ul {
     padding: 0;

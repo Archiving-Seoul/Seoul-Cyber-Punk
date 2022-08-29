@@ -1,6 +1,7 @@
 import GallerySlider from "../components/GallerySlider";
 import AboutMain from "../components/AboutMain";
 import AboutIntroMap from "../components/AboutIntroMap";
+import AboutDescription from "../components/AboutDescription";
 import { useEffect, useState } from "react";
 import * as Api from "../api.js";
 
@@ -32,6 +33,7 @@ function About() {
     <>
       <AboutMain />
       <AboutIntroMap />
+      <AboutDescription />
       <GallerySlider imgData={imgData} />
     </>
   );
