@@ -73,6 +73,7 @@ const TitleText = styled.h1`
   color: red;
   line-height: 180px;
   text-align: center;
+  font-family: "Stretch Pro Regular", sans-serif;
 `;
 
 const IconBox = styled.div`

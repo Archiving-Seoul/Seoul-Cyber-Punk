@@ -1,7 +1,7 @@
-import GallerySlider from "../components/GallerySlider";
-import AboutMain from "../components/AboutMain";
-import AboutIntroMap from "../components/AboutIntroMap";
-import AboutDescription from "../components/AboutDescription";
+import AboutMain from "../components/about/AboutMain";
+import AboutIntroMap from "../components/about/aboutIntroMap/AboutIntroMap";
+import AboutDescription from "../components/about/AboutDescription";
+import GallerySlider from "../components/about/gallerySlider/GallerySlider";
 import { useEffect, useState } from "react";
 import * as Api from "../api.js";
 

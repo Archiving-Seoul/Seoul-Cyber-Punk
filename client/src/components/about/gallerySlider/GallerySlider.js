@@ -4,7 +4,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import { useRef, useState } from "react";
 import Photo from "./Photo";
-import EnlargePhoto from "../components/EnlargePhoto";
+import EnlargePhoto from "./EnlargePhoto";
 
 function GallerySlider({ imgData }) {
   const [moveLeft, setMoveLeft] = useState(false);
