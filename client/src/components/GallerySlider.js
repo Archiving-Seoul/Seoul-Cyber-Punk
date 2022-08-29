@@ -13,7 +13,7 @@ function GallerySlider({ imgData }) {
   const photoBoxRef2 = useRef();
 
   return (
-    <div>
+    <>
       <EnlargePhoto mainURL={clickedImgURL} />
       <GalleryContainer moveLeft={moveLeft}>
         <ButtonBox>
@@ -69,14 +69,14 @@ function GallerySlider({ imgData }) {
           </RightButton>
         </ButtonBox>
       </GalleryContainer>
-    </div>
+    </>
   );
 }
 
 const GalleryContainer = styled.div`
-  margin: 0 20px;
+  width: 1440px;
+  margin: 0 auto;
   background-color: black;
-  border: 3px solid black;
   display: grid;
   grid-template-columns: ${({ moveLeft }) =>
     moveLeft ? "44px 1fr 147px" : "147px 1fr 44px"};

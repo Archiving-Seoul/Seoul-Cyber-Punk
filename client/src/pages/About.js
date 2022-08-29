@@ -1,4 +1,5 @@
 import GallerySlider from "../components/GallerySlider";
+import AboutMain from "../components/AboutMain";
 import { useEffect, useState } from "react";
 import * as Api from "../api.js";
 
@@ -28,6 +29,7 @@ function About() {
   }
   return (
     <>
+      <AboutMain />
       <GallerySlider imgData={imgData} />
     </>
   );

@@ -8,7 +8,7 @@ const Container = styled.section`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 1440px;
   height: 1024px;
 `;
 
