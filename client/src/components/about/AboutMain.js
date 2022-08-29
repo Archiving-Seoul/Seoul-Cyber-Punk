@@ -5,9 +5,12 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 function AboutMain() {
   const BACKGROUND_URL =
     "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/gr.png";
+  const BLACK_BACKGROUND_URL =
+    "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/home.png";
   return (
     <Container>
       <Img src={BACKGROUND_URL} />
+      <BackgroundImg src={BLACK_BACKGROUND_URL} />
       <NavBar>
         <ul>
           <li id="home">Home</li>
@@ -33,6 +36,13 @@ const Container = styled.section`
 const Img = styled.img`
   width: 1440px;
   height: 1024px;
+`;
+
+const BackgroundImg = styled(Img)`
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 const NavBar = styled.nav`

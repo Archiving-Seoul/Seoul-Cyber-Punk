@@ -79,13 +79,12 @@ const GalleryContainer = styled.div`
   background-color: black;
   display: grid;
   grid-template-columns: ${({ moveLeft }) =>
-    moveLeft ? "44px 1fr 147px" : "147px 1fr 44px"};
+    moveLeft ? " 0 1fr 120px  " : "120px 1fr 0 "};
 `;
 
 const PhotoContainer = styled.div`
   width: 100%;
   display: flex;
-  gap: 20px;
   overflow: hidden;
 `;
 
@@ -96,8 +95,8 @@ const PhotoBox = styled.div`
   row-gap: 44px;
   column-gap: 55px;
   padding: 44px 0;
+  padding-right: 20px;
   background-color: black;
-  /* border: 3px solid blue; */
   transition: transform 1.3s ease-out 0.1s;
 
   div {
