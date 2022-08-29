@@ -28,7 +28,6 @@ const Container = styled.section`
   position: relative;
   width: 1440px;
   margin: 0 auto;
-  color: white;
 `;
 
 const Img = styled.img`
