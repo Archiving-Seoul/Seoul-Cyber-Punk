@@ -1,0 +1,77 @@
+import styled from "styled-components";
+import SelectItem from "./SelectItem";
+
+function Favorite() {
+  return (
+    <Container>
+      <Title>Favorite</Title>
+      <HelpText>select your ONE</HelpText>
+      <SelectBox>
+        <SelectItem
+          title={"OLD"}
+          imgURL={
+            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_1.png"
+          }
+        />
+        <SelectItem
+          title={"NEW"}
+          imgURL={
+            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_2.png"
+          }
+        />
+        <SelectItem
+          title={"DAY"}
+          imgURL={
+            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_3.png"
+          }
+        />
+        <SelectItem
+          title={"NIGHT"}
+          imgURL={
+            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_4.png"
+          }
+        />
+      </SelectBox>
+    </Container>
+  );
+}
+
+const Container = styled.section`
+  position: relative;
+  width: 1440px;
+  height: 918px;
+  margin: 0 auto;
+`;
+
+const Title = styled.h1`
+  color: #ff0000;
+  font-family: "Stretch Pro Regular", sans-serif;
+  font-weight: 400;
+  font-size: 144px;
+  line-height: 120px;
+  text-align: center;
+  margin-top: 110px;
+  margin-bottom: 8px;
+`;
+
+const HelpText = styled.h5`
+  color: white;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+`;
+
+const SelectBox = styled.div`
+  position: absolute;
+  bottom: 109px;
+  left: 144px;
+  width: 1152px;
+  height: 463px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 14px;
+  grid-row-gap: 45px;
+`;
+
+export default Favorite;

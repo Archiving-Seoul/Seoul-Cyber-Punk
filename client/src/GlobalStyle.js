@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import "./assets/fonts.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -28,7 +28,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	overflow-y: hidden;
 	line-height: 1;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -53,4 +52,4 @@ table {
 }
 `;
 
-export {GlobalStyle};
+export { GlobalStyle };
