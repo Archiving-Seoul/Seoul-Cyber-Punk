@@ -28,7 +28,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	overflow-y: hidden;
 	line-height: 1;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
