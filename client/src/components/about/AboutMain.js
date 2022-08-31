@@ -31,13 +31,13 @@ const Container = styled.section`
 `;
 
 const Img = styled.div`
+  background-image: url(${(props) => props.BACKGROUND_URL});
+  position: relative;
   width: 1440px;
   height: 1024px;
-  position: relative;
-  background-image: url(${(props) => props.BACKGROUND_URL});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 `;
 
 const BackgroundImg = styled.img`
