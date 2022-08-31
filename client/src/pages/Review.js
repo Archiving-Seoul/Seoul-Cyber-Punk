@@ -1,18 +1,11 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
-
+import Header from "../components/common/Header";
 function Review() {
   return (
     <>
       <Container>
-        <NavBar>
-          <ul>
-            <li id="home">Home</li>
-            <li id="about">About</li>
-            <li id="spot">Spot</li>
-            <li id="review">Review</li>
-          </ul>
-        </NavBar>
+        <Header />
         <SocialMenu>
           <li id="all">All</li>
           <li id="blog">Blog</li>
