@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Header from "../components/home/Header";
+import Header from "../components/common/Header";
 import Section from "../components/home/Section";
 import Slide from "../components/home/Slide";
 import FloatSlide from "../components/home/FloatSlide";
@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <Container>
-        <Header />
+        <Header isHome={true} />
         <Section />
         <Slide />
         <FloatSlide />
