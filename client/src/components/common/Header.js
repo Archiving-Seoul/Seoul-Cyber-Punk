@@ -55,6 +55,7 @@ const Wrapper = styled.div`
   display: flex;
   overflow: hidden;
   margin-top: 47px;
+  z-index: 999;
 `;
 const TitleLogo = styled.div`
   font-size: 24px;

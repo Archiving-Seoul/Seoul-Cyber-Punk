@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import "./assets/fonts.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -53,4 +53,4 @@ table {
 }
 `;
 
-export {GlobalStyle};
+export { GlobalStyle };
