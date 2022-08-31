@@ -28,8 +28,8 @@ function Slide() {
             }.png`;
           }
           return (
-            <CardBox>
-              <CardImg key={id} alt={id} src={srcLink} />
+            <CardBox key={`${id}_img_section`}>
+              <CardImg alt={id} src={srcLink} />
             </CardBox>
           );
         })}
@@ -72,6 +72,7 @@ const SlideTitle = styled.div`
 const StyledSlider = styled(Slider)`
   .slick-list {
     width: 1440px;
+    height: 1024px;
     margin: auto;
     /* border: 1px solid white; */
   }
@@ -85,7 +86,7 @@ const StyledSlider = styled(Slider)`
     width: 424px;
 
     li {
-      height: 90px;
+      height: 85px;
       color: white;
       display: block;
       &.slick-active {
