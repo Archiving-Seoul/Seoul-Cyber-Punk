@@ -36,6 +36,7 @@ const ImgSection = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   height: 873px;
+  position: relative;
 `;
 const ImgLayer = styled.div`
   background-image: url("https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/home_section1_img.png");
@@ -43,7 +44,8 @@ const ImgLayer = styled.div`
   background-position: center;
   height: 500px;
   width: 894px;
-  padding-left: calc(894px / 2);
-  padding-top: calc((873px / 2));
+  position: absolute;
+  top: 22%;
+  left: 18%;
 `;
 export default Section;
