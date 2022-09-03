@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Api from "../api";
 function Review() {
+  const [data, setData] = useState([]);
   useEffect(() => {
     getYoutube();
   }, []);
 
   async function getYoutube() {
     const res = await Api.get("/api/youtube");
-    console.log("res.data", res.data);
+    const items = res.data.items;
+    console.log(items);
+    setData(items);
   }
 
   return (
@@ -23,7 +26,7 @@ function Review() {
           <li id="youtube">Youtube</li>
         </SocialMenu>
 
-        <ImageBlocks />
+        <ImageBlocks data={data} />
       </Container>
     </>
   );
