@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { tourRouter } from "./routers/tour-router";
 import { aboutRouter } from "./routers/about-router";
+import { youtubeRouter } from "./routers/youtube-router";
 
 import bodyParser from "body-parser";
 
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", tourRouter);
 app.use("/api/about", aboutRouter);
+app.use("/api/youtube", youtubeRouter);
 // app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 
