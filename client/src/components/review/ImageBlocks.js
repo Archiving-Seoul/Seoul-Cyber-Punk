@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 
-function ImageBlocks() {
+function ImageBlocks({ data }) {
   return (
     <BlockBox>
       <GridBox>
@@ -13,16 +13,14 @@ function ImageBlocks() {
           title={"10 things \n you've got to do in Seoul"}
         />
         <PhotoBlock
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/14-best-things-to-do-in-seoul.png"
-          }
-          title={"14 Best Things \n To Do In Seoul"}
+          imgURL={data && data[0].snippet.thumbnails.medium.url}
+          title={data && data[0].snippet.title}
+          video_id={data && data[0].id.videoId}
         />
         <PhotoBlock
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/Luxury-Travel-Guide-in-Seoul-Korea.png"
-          }
-          title={"Luxury Travel Guide \n in Seoul Korea"}
+          imgURL={data && data[1].snippet.thumbnails.medium.url}
+          title={data && data[1].snippet.title}
+          video_id={data && data[1].id.videoId}
         />
         <PhotoBlock
           imgURL={

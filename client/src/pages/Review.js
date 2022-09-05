@@ -1,7 +1,21 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
+import { useEffect, useState } from "react";
+import * as Api from "../api";
 function Review() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getYoutube();
+  }, []);
+
+  async function getYoutube() {
+    const res = await Api.get("/api/youtube");
+    const items = res.data.items;
+    console.log(items);
+    setData(items);
+  }
+
   return (
     <>
       <Container>
@@ -11,7 +25,8 @@ function Review() {
           <li id="blog">Blog</li>
           <li id="youtube">Youtube</li>
         </SocialMenu>
-        <ImageBlocks />
+
+        <ImageBlocks data={data} />
       </Container>
     </>
   );
@@ -22,31 +37,6 @@ const Container = styled.section`
   width: 1440px;
   margin: 0 auto;
   border: 1px solid black;
-`;
-
-const NavBar = styled.nav`
-  position: absolute;
-  right: 44px;
-  top: 44px;
-  width: 268px;
-  color: white;
-
-  ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    li:hover {
-      opacity: 0.5;
-    }
-
-    #review {
-      color: red;
-    }
-  }
 `;
 
 const SocialMenu = styled.ul`

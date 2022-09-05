@@ -1,14 +1,21 @@
 import styled from "styled-components";
-function PhotoBlock({ title, imgURL, id }) {
+
+function PhotoBlock({ title, imgURL, id, video_id }) {
   return (
-    <Photo id={id}>
+    <Photo
+      id={id}
+      href={`https://www.youtube.com/watch?v=${video_id}`}
+      target="_blank"
+    >
       <img src={imgURL} alt="사진" />
       <p>{title}</p>
     </Photo>
   );
 }
 
-const Photo = styled.div`
+const Photo = styled.a`
+  display: inline-block;
+  color: white;
   position: relative;
   border-radius: 20px;
   grid-column: ${({ id }) =>
