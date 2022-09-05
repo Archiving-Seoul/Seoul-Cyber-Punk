@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-function PhotoBlock({ title, imgURL, id, video_id }) {
+function PhotoBlock({ title, imgURL, id, linkURL }) {
   return (
     <Photo
       id={id}
-      href={`https://www.youtube.com/watch?v=${video_id}`}
+      href={`https://www.youtube.com/watch?v=${linkURL}`}
       target="_blank"
     >
       <img src={imgURL} alt="사진" />

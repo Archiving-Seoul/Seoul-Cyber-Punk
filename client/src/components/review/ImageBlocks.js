@@ -3,55 +3,57 @@ import PhotoBlock from "./PhotoBlock";
 
 function ImageBlocks({ data }) {
   return (
-    <BlockBox>
-      <GridBox>
-        <PhotoBlock
-          id="height_long"
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-things-you've-got-to-do-in-Seoul.png"
-          }
-          title={"10 things \n you've got to do in Seoul"}
-        />
-        <PhotoBlock
-          imgURL={data && data[0].snippet.thumbnails.medium.url}
-          title={data && data[0].snippet.title}
-          video_id={data && data[0].id.videoId}
-        />
-        <PhotoBlock
-          imgURL={data && data[1].snippet.thumbnails.medium.url}
-          title={data && data[1].snippet.title}
-          video_id={data && data[1].id.videoId}
-        />
-        <PhotoBlock
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Tips-To-Visit-Seoul-On-A-Budget.png"
-          }
-          title={"10 Tips To Visit Seoul \n On A Budget"}
-        />
-        <PhotoBlock
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Things-to-Know-Before-Travelling-to-Seoul-Alone.png"
-          }
-          title={"10 Things to Know Before \n Traveling to Seoul Alone"}
-        />
-        <PhotoBlock
-          id="width_long"
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/30-Things-to-Do-and-Know-about-Seoul.png"
-          }
-          title={"30 Things to Do and Know about Seoul"}
-        />
-      </GridBox>
-      <MainPhotoBox>
-        <PhotoBlock
-          imgURL={
-            "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/Travel-to-South-Korea.png"
-          }
-          title={"Travel to South Korea"}
-        />
-      </MainPhotoBox>
-      <LogoTitle>CYBERPUNKSEOUL</LogoTitle>
-    </BlockBox>
+    <>
+      <BlockBox>
+        <GridBox>
+          <PhotoBlock
+            id="height_long"
+            imgURL={
+              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-things-you've-got-to-do-in-Seoul.png"
+            }
+            title={"10 things \n you've got to do in Seoul"}
+          />
+          <PhotoBlock
+            imgURL={data && data[0].img_URL}
+            title={data && data[0].title}
+            linkURL={data && data[0].link_URL}
+          />
+          <PhotoBlock
+            imgURL={data && data[1].img_URL}
+            title={data && data[1].title}
+            linkURL={data && data[1].link_URL}
+          />
+          <PhotoBlock
+            imgURL={
+              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Tips-To-Visit-Seoul-On-A-Budget.png"
+            }
+            title={"10 Tips To Visit Seoul \n On A Budget"}
+          />
+          <PhotoBlock
+            imgURL={
+              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Things-to-Know-Before-Travelling-to-Seoul-Alone.png"
+            }
+            title={"10 Things to Know Before \n Traveling to Seoul Alone"}
+          />
+          <PhotoBlock
+            id="width_long"
+            imgURL={
+              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/30-Things-to-Do-and-Know-about-Seoul.png"
+            }
+            title={"30 Things to Do and Know about Seoul"}
+          />
+        </GridBox>
+        <MainPhotoBox>
+          <PhotoBlock
+            imgURL={
+              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/Travel-to-South-Korea.png"
+            }
+            title={"Travel to South Korea"}
+          />
+        </MainPhotoBox>
+        <LogoTitle>CYBERPUNKSEOUL</LogoTitle>
+      </BlockBox>
+    </>
   );
 }
 
