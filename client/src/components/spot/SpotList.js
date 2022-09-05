@@ -1,37 +1,52 @@
+import {useEffect, useState} from "react";
 import styled from "styled-components";
+import Modal from "./Modal";
 
-function SpotList() {
+function SpotList({spots, title}) {
+  const [modal, setModal] = useState(false);
+  const [activeData, setActiveData] = useState({});
+  function closeModal() {
+    document.body.style.overflow = "unset";
+    setModal((prev) => !prev);
+  }
   return (
     <>
+      {modal && (
+        <Modal
+          isModal={modal}
+          closeModal={closeModal}
+          data={activeData}
+        ></Modal>
+      )}
       <Wrapper>
-        <CategoryName>Most Popular</CategoryName>
+        <CategoryName>{title}</CategoryName>
         <Thumnails>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-        </Thumnails>
-        <CategoryName>Hot place for MZ</CategoryName>
-        <Thumnails>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
-          <ThumBox></ThumBox>
+          {spots &&
+            spots.data.map((ele, idx) => (
+              <ThumBox
+                key={idx}
+                URL={ele.imgURL}
+                onClick={() => {
+                  setModal(true);
+                  setActiveData(ele);
+                  document.body.style.overflow = "hidden";
+                }}
+              ></ThumBox>
+            ))}
         </Thumnails>
       </Wrapper>
     </>
   );
 }
+
 const Wrapper = styled.div`
   position: relative;
-  top: -50px;
-  margin: auto;
+  top: -70px;
+  margin: 30px auto;
   /* border: 1px white solid; */
   width: 1396px;
   height: 238px;
-  padding: 0 20px;
+  padding-left: 15px;
   box-sizing: border-box;
 `;
 const CategoryName = styled.div`
@@ -52,9 +67,24 @@ const Thumnails = styled.div`
   gap: 14px;
 `;
 const ThumBox = styled.div`
+  cursor: pointer;
   flex-shrink: 0;
   width: 328px;
   height: 196px;
-  background-image: url("https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/1661752268440.jpg");
+  background-image: url(${(props) => props.URL});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  &:hover {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url(${(props) => props.URL});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 `;
 export default SpotList;
