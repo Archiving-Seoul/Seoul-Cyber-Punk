@@ -1,10 +1,9 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-function Modal({data, isModal, closeModal}) {
+function Modal({ data, isModal, closeModal }) {
   const modalRef = useRef();
   useEffect(() => {
-    console.log(data);
     document.addEventListener("click", clickModalOutside, true);
     return () => {
       document.removeEventListener("click", clickModalOutside, true);
