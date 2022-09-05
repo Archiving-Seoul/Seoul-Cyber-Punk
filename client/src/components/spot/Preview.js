@@ -3,18 +3,15 @@ import styled from "styled-components";
 function Preview() {
   return (
     <>
-      <ImgBox>
-        <Title>
-          Gyeongbokgung
-          <br />
-          Palace
-        </Title>
+      <ImgBox url={require("../../assets/images/01.jpg")}>
+        <Title>Gyeongbokgung Palace</Title>
       </ImgBox>
     </>
   );
 }
 
 const ImgBox = styled.div`
+  display: block;
   position: relative;
   width: 1440px;
   height: 481px;
@@ -23,11 +20,14 @@ const ImgBox = styled.div`
   margin: auto;
   z-index: -99;
   overflow: hidden;
-  background-image: url("https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/inSeoul5.jpg");
+  background: linear-gradient(to top, transparent, black),
+    url(${(props) => props.url});
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
 `;
 const Title = styled.div`
+  width: 600px;
   font-weight: 700;
   font-size: 64px;
   line-height: 72px;
