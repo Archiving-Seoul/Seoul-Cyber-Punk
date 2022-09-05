@@ -1,22 +1,29 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
+const {Schema} = mongoose;
 
 const TourSchema = new Schema(
   {
-    mainURL: {
+    name: {
       type: String,
     },
-    subURL: {
+    address: {
       type: String,
     },
-    mood: {
+    description: {
       type: String,
+    },
+
+    imgURL: {
+      type: String,
+    },
+    category: {
+      type: [String],
     },
   },
   {
-    collection: "about",
+    collection: "tourAttraction",
     timestamps: true,
   }
 );
 
-export { TourSchema };
+export {TourSchema};

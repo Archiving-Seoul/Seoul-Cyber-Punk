@@ -1,6 +1,21 @@
 import {tourModel} from "../db/index";
 
 const tourController = {
+  readByCateogry: async (req, res) => {
+    try {
+      const {categoryId} = req.params;
+      const result = await tourModel.findByCategory(categoryId);
+      res.status(200).json({
+        status: 200,
+        message: "카테고리별 spot 조회",
+        data: result,
+        param: categoryId,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
   output: (req, res) => {
     res.render("create");
   },

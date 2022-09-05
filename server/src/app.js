@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { tourRouter } from "./routers/tour-router";
-import { aboutRouter } from "./routers/about-router";
+import {tourRouter} from "./routers/tour-router";
+import {aboutRouter} from "./routers/about-router";
 
 import bodyParser from "body-parser";
 
@@ -18,11 +18,12 @@ app.use(
 app.set("views", "./src/views");
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.use("/", tourRouter);
+// app.use("/", tourRouter);
 app.use("/api/about", aboutRouter);
+app.use("/api/spot", tourRouter);
 // app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 
-export { app };
+export {app};
