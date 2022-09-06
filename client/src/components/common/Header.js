@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function Header({isHome}) {
+function Header({ isHome, isAbout }) {
   const currentURL = useLocation().pathname.split("/")[1];
   const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Wrapper isAbout={isAbout}>
       <TitleLogo>
         {isHome && <div className="typo">CYBERPUNKSEOUL</div>}
       </TitleLogo>
@@ -55,7 +55,9 @@ const Wrapper = styled.div`
   display: flex;
   overflow: hidden;
   margin-top: 47px;
-  z-index: 999;
+  position: ${({ isAbout }) => (isAbout ? "absolute" : "")};
+  right: ${({ isAbout }) => (isAbout ? "0px" : "")};
+  z-index: ${({ isAbout }) => (isAbout ? "999" : "")};
 `;
 const TitleLogo = styled.div`
   font-size: 24px;
