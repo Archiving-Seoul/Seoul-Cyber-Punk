@@ -38,7 +38,7 @@ function Review() {
   return (
     <>
       <Container>
-        <Header />
+        <Header isAbout={true} />
         <SocialMenu>
           <li id="all">All</li>
           <li id="blog">Blog</li>

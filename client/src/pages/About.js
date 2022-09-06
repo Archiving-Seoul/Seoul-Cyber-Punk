@@ -6,8 +6,7 @@ import DayNightMain from "../components/about/DayNightMain";
 import GallerySlider from "../components/about/gallerySlider/GallerySlider";
 import Favorite from "../components/about/favorite/Favorite";
 import Footer from "../components/about/Footer";
-// import Header from "../components/common/Header";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import * as Api from "../api.js";
 
 function About() {
@@ -28,7 +27,7 @@ function About() {
       const newMood = data.filter((el) => el.mood === "NEW");
       const dayMood = data.filter((el) => el.mood === "DAY");
       const nightMood = data.filter((el) => el.mood === "NIGHT");
-      const mood = {oldMood, newMood, dayMood, nightMood};
+      const mood = { oldMood, newMood, dayMood, nightMood };
       return mood;
     } catch (error) {
       throw new Error("데이터를 받아올 수 없습니다.");
@@ -36,7 +35,6 @@ function About() {
   }
   return (
     <>
-      {/* <Header /> */}
       <AboutMain />
       <AboutIntroMap />
       <AboutDescription />
