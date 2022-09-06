@@ -6,6 +6,10 @@ function Photo({ subURL, mainURL, setClickedImgURL }) {
       <div
         onClick={() => {
           setClickedImgURL(mainURL);
+          window.scrollTo({
+            top: 4500,
+            behavior: "smooth",
+          });
         }}
       >
         <Img src={subURL} />
