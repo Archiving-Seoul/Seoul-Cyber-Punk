@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-function PhotoBlock({ title, imgURL, id, linkURL }) {
+function PhotoBlock({ title, imgURL, id, linkURL, setClickedModal }) {
   return (
     <Photo
       id={id}
-      href={`https://www.youtube.com/watch?v=${linkURL}`}
+      // href={`https://www.youtube.com/watch?v=${linkURL}`}
       target="_blank"
+      onClick={() => {
+        setClickedModal((cur) => {
+          return { ...cur, id: linkURL, isModal: true };
+        });
+      }}
     >
       <img src={imgURL} alt="사진" />
       <p>{title}</p>
@@ -14,6 +19,8 @@ function PhotoBlock({ title, imgURL, id, linkURL }) {
 }
 
 const Photo = styled.a`
+  width: 100%;
+  height: 100%;
   display: inline-block;
   color: white;
   position: relative;
@@ -28,6 +35,8 @@ const Photo = styled.a`
   }
   img {
     width: 100%;
+    height: 100%;
+    border-radius: 20px;
   }
 
   p {

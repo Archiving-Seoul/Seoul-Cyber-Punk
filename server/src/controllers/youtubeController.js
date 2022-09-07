@@ -6,7 +6,7 @@ const youtubeController = {
     const optionParams = {
       q: "seoultravel",
       part: "snippet",
-      maxResults: 2,
+      maxResults: 7,
     };
     for (let option in optionParams) {
       URL += "&" + option + "=" + optionParams[option];

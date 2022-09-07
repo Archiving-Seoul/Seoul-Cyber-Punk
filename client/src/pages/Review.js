@@ -6,6 +6,7 @@ import * as Api from "../api";
 function Review() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [clickedModal, setClickedModal] = useState({ id: "", isModal: false });
   useEffect(() => {
     getData();
   }, []);
@@ -13,7 +14,6 @@ function Review() {
   async function getData() {
     try {
       const result = await getYoutube();
-      console.log("result", result);
       const reviewData = result.map(({ snippet, id }) => {
         return {
           img_URL: snippet.thumbnails.medium.url,
@@ -21,6 +21,7 @@ function Review() {
           link_URL: id.videoId,
         };
       });
+      console.log("data", reviewData);
       setData(reviewData);
       setIsLoading(false);
     } catch (err) {
@@ -31,7 +32,6 @@ function Review() {
   async function getYoutube() {
     const res = await Api.get("/api/youtube");
     const items = res.data.items;
-    console.log("items", items);
     return items;
   }
 
@@ -44,7 +44,13 @@ function Review() {
           <li id="blog">Blog</li>
           <li id="youtube">Youtube</li>
         </SocialMenu>
-        {!isLoading && <ImageBlocks data={data} />}
+        {!isLoading && (
+          <ImageBlocks
+            data={data}
+            clickedModal={clickedModal}
+            setClickedModal={setClickedModal}
+          />
+        )}
       </Container>
     </>
   );
