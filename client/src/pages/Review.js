@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import * as Api from "../api";
+
+// const DUMMY_DATA = [{
+//   img_URL: snippet.thumbnails.medium.url,
+//   title: snippet.title,
+//   link_URL: id.videoId,
+// },
+// ]
 function Review() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [clickedModal, setClickedModal] = useState({ id: "", isModal: false });
+  const [clickedModal, setClickedModal] = useState({id: "", isModal: false});
   useEffect(() => {
     getData();
   }, []);
@@ -14,7 +21,7 @@ function Review() {
   async function getData() {
     try {
       const result = await getYoutube();
-      const reviewData = result.map(({ snippet, id }) => {
+      const reviewData = result.map(({snippet, id}) => {
         return {
           img_URL: snippet.thumbnails.medium.url,
           title: snippet.title,
