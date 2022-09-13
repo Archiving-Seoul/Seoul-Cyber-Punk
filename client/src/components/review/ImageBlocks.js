@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 import Modal from "./Modal";
 
-function ImageBlocks({ data, clickedModal, setClickedModal }) {
+function ImageBlocks({data, clickedModal, setClickedModal}) {
   return (
     <>
       {clickedModal.isModal && (
@@ -10,6 +10,7 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
       )}
       <BlockBox>
         <GridBox>
+          {/* {} */}
           <PhotoBlock
             setClickedModal={setClickedModal}
             id="height_long"

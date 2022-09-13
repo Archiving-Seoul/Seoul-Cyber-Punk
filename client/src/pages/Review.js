@@ -3,13 +3,9 @@ import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
 import {useEffect, useState} from "react";
 import * as Api from "../api";
+import {DUMMY_DATA} from "../assets/dummy";
+import {Routes, Route, Link} from "react-router-dom";
 
-// const DUMMY_DATA = [{
-//   img_URL: snippet.thumbnails.medium.url,
-//   title: snippet.title,
-//   link_URL: id.videoId,
-// },
-// ]
 function Review() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,11 +19,13 @@ function Review() {
       const result = await getYoutube();
       const reviewData = result.map(({snippet, id}) => {
         return {
+          tab: "youTube",
           img_URL: snippet.thumbnails.medium.url,
           title: snippet.title,
           link_URL: id.videoId,
         };
       });
+      reviewData.push(...DUMMY_DATA);
       console.log("data", reviewData);
       setData(reviewData);
       setIsLoading(false);
@@ -41,15 +39,46 @@ function Review() {
     const items = res.data.items;
     return items;
   }
+  function clickHandler(category) {
+    const tmpData = data.filter((ele) => ele.tab === category);
+    console.log(tmpData, "wpqkfwpqkf");
+    setData(tmpData);
+  }
 
   return (
     <>
       <Container>
         <Header isAbout={true} />
         <SocialMenu>
-          <li id="all">All</li>
-          <li id="blog">Blog</li>
-          <li id="youtube">Youtube</li>
+          <Routes>
+            {/* <Route path="" element={<ImageBlocks />} /> */}
+            <Route path="review/youtube" element={<ImageBlocks />} />
+            <Route path="review/blog" element={<ImageBlocks />} />
+          </Routes>
+          <Link
+            to=""
+            onClick={() => {
+              clickHandler("all");
+            }}
+          >
+            All
+          </Link>
+          <Link
+            to="/review/blog"
+            onClick={() => {
+              clickHandler("web");
+            }}
+          >
+            Blog
+          </Link>
+          <Link
+            to="/review/youtube"
+            onClick={() => {
+              clickHandler("youTube");
+            }}
+          >
+            Youtube
+          </Link>
         </SocialMenu>
         {!isLoading && (
           <ImageBlocks
