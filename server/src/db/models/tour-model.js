@@ -8,8 +8,8 @@ export class TourModel {
     return await Tour.create(tourInfo);
   }
   // 카테고리별 spot 조회하기
-  async findByCategory(categoryId) {
-    return await Tour.find({category: categoryId});
+  async findAll() {
+    return await Tour.find();
   }
 }
 
