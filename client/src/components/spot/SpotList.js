@@ -9,6 +9,9 @@ function SpotList({spots, title}) {
     document.body.style.overflow = "unset";
     setModal((prev) => !prev);
   }
+  useEffect(() => {
+    console.log(spots, "스팟");
+  }, []);
   return (
     <>
       {modal && (
@@ -22,7 +25,7 @@ function SpotList({spots, title}) {
         <CategoryName>{title}</CategoryName>
         <Thumnails>
           {spots &&
-            spots.data.map((ele, idx) => (
+            spots.map((ele, idx) => (
               <ThumBox
                 key={idx}
                 URL={ele.imgURL}

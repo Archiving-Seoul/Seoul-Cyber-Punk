@@ -1,78 +1,46 @@
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import Header from "../common/Header";
 
 function AboutMain() {
-  const BACKGROUND_URL =
+  const COLOR_URL =
     "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/gr.png";
   const BLACK_BACKGROUND_URL =
     "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/home.png";
   return (
-    <Container>
-      <Header isHome={false} />
-      <Img BACKGROUND_URL={BACKGROUND_URL}>
-        <BackgroundImg src={BLACK_BACKGROUND_URL} />
-      </Img>
+    <BackgroundBox BACKGROUND_URL={COLOR_URL}>
+      <Header isHome={false} isAbout={true} />
+      <OverlayImg BACKGROUND_URL={BLACK_BACKGROUND_URL}></OverlayImg>
 
       <TitleText>CYBERPUNKSEOUL</TitleText>
       <IconBox>
         <FontAwesomeIcon icon={faArrowDown} />
       </IconBox>
-    </Container>
+    </BackgroundBox>
   );
 }
 
-const Container = styled.section`
-  position: relative;
-  z-index: -999;
-  width: 1440px;
-  margin: 0 auto;
-`;
-
-const Img = styled.div`
+const BackgroundBox = styled.div`
   background-image: url(${(props) => props.BACKGROUND_URL});
   position: relative;
   width: 1440px;
   height: 1024px;
+  margin: 0 auto;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 `;
 
-const BackgroundImg = styled.img`
+const OverlayImg = styled.div`
   width: 1440px;
   height: 1024px;
   opacity: 0.7;
+
+  background-image: url(${(props) => props.BACKGROUND_URL});
   position: absolute;
   top: 0;
   left: 0;
-  /* background-image: url(${(props) => props.BACKGROUND_URL}); */
-`;
-
-const NavBar = styled.nav`
-  position: absolute;
-  right: 44px;
-  top: 44px;
-  width: 268px;
-  color: white;
-
-  ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    li:hover {
-      opacity: 0.5;
-    }
-
-    #about {
-      color: red;
-    }
-  }
 `;
 
 const TitleText = styled.h1`

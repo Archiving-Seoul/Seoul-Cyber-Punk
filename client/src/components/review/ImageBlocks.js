@@ -1,54 +1,61 @@
 import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
+import Modal from "./Modal";
 
-function ImageBlocks({ data }) {
+function ImageBlocks({data, clickedModal, setClickedModal}) {
   return (
     <>
+      {clickedModal.isModal && (
+        <Modal setClickedModal={setClickedModal} clickedModal={clickedModal} />
+      )}
       <BlockBox>
         <GridBox>
+          {/* {} */}
           <PhotoBlock
+            setClickedModal={setClickedModal}
             id="height_long"
-            imgURL={
-              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-things-you've-got-to-do-in-Seoul.png"
-            }
-            title={"10 things \n you've got to do in Seoul"}
+            imgURL={data && data[6].img_URL}
+            title={data && data[6].title}
+            linkURL={data && data[6].link_URL}
           />
           <PhotoBlock
+            setClickedModal={setClickedModal}
             imgURL={data && data[0].img_URL}
             title={data && data[0].title}
             linkURL={data && data[0].link_URL}
           />
           <PhotoBlock
+            setClickedModal={setClickedModal}
             imgURL={data && data[1].img_URL}
             title={data && data[1].title}
             linkURL={data && data[1].link_URL}
           />
           <PhotoBlock
-            imgURL={
-              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Tips-To-Visit-Seoul-On-A-Budget.png"
-            }
-            title={"10 Tips To Visit Seoul \n On A Budget"}
+            setClickedModal={setClickedModal}
+            imgURL={data && data[2].img_URL}
+            title={data && data[2].title}
+            linkURL={data && data[2].link_URL}
           />
           <PhotoBlock
-            imgURL={
-              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/10-Things-to-Know-Before-Travelling-to-Seoul-Alone.png"
-            }
-            title={"10 Things to Know Before \n Traveling to Seoul Alone"}
+            setClickedModal={setClickedModal}
+            imgURL={data && data[3].img_URL}
+            title={data && data[3].title}
+            linkURL={data && data[3].link_URL}
           />
           <PhotoBlock
             id="width_long"
-            imgURL={
-              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/30-Things-to-Do-and-Know-about-Seoul.png"
-            }
-            title={"30 Things to Do and Know about Seoul"}
+            setClickedModal={setClickedModal}
+            imgURL={data && data[4].img_URL}
+            title={data && data[4].title}
+            linkURL={data && data[4].link_URL}
           />
         </GridBox>
         <MainPhotoBox>
           <PhotoBlock
-            imgURL={
-              "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/review/Travel-to-South-Korea.png"
-            }
-            title={"Travel to South Korea"}
+            setClickedModal={setClickedModal}
+            imgURL={data && data[5].img_URL}
+            title={data && data[5].title}
+            linkURL={data && data[5].link_URL}
           />
         </MainPhotoBox>
         <LogoTitle>CYBERPUNKSEOUL</LogoTitle>
@@ -65,7 +72,6 @@ const BlockBox = styled.div`
 
 const GridBox = styled.div`
   width: 100%;
-  height: 502px;
   margin-bottom: 64px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -76,7 +82,6 @@ const GridBox = styled.div`
 const MainPhotoBox = styled.div`
   width: 100%;
   height: 521px;
-  border-radius: 20px;
   margin-bottom: 44px;
 `;
 

@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from "styled-components";
+import App from "./App";
 import "./assets/fonts.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -51,6 +52,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+a {
+	text-decoration: none;
+	color: white;
+}
 `;
 
-export { GlobalStyle };
+export {GlobalStyle};

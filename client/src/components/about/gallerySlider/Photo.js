@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
-function Photo({ subURL, mainURL, setClickedImgURL }) {
+function Photo({ subURL, setClickedIndex, isFirst, index, isOld }) {
   return (
     <>
       <div
         onClick={() => {
-          setClickedImgURL(mainURL);
+          if (isFirst) {
+            setClickedIndex(index);
+          } else {
+            setClickedIndex(index + 18);
+          }
+          if (isOld) {
+            window.scrollTo(0, 4500);
+          } else {
+            window.scrollTo(0, 8600);
+          }
         }}
       >
         <Img src={subURL} />
