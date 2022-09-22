@@ -4,11 +4,12 @@ import Header from "../components/common/Header";
 import { useEffect, useState } from "react";
 import * as Api from "../api";
 import { DUMMY_DATA } from "../assets/dummy";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getYoutube } from "../react-query/queryFunction";
 
 function Review() {
+  const navigate = useNavigate();
   const { isLoading, data, isError, error, isFetching } = useQuery(
     ["review"],
     getYoutube,
@@ -16,8 +17,8 @@ function Review() {
       staleTime: 600 * 1000,
     }
   );
-  const [categoryData, setCategoryData] = useState();
-
+  const [categoryData, setCategoryData] = useState(data);
+  const [tab, setTab] = useState("all");
   const [clickedModal, setClickedModal] = useState({ id: "", isModal: false });
 
   console.log("data", data);
@@ -39,40 +40,44 @@ function Review() {
       {isFetching ? <h1>Fetching...</h1> : ""}
       <Container>
         <Header isAbout={true} />
-        <SocialMenu>
-          <Routes>
-            {/* <Route path="" element={<ImageBlocks />} /> */}
-            <Route path="review/youtube" element={<ImageBlocks />} />
-            <Route path="review/blog" element={<ImageBlocks />} />
-          </Routes>
-          <Link
-            to=""
+        <SocialMenu tab={tab}>
+          <li
+            id="all"
             onClick={() => {
-              clickHandler("all");
+              setTab("all");
+              navigate("?tab=all");
+
+              // clickHandler("all");
             }}
           >
             All
-          </Link>
-          <Link
-            to="/review/blog"
+          </li>
+          <li
+            id="web"
             onClick={() => {
-              clickHandler("web");
+              setTab("web");
+              navigate("?tab=web");
+
+              // clickHandler("web");
             }}
           >
             Blog
-          </Link>
-          <Link
-            to="/review/youtube"
+          </li>
+          <li
+            id="youtube"
             onClick={() => {
-              clickHandler("youTube");
+              setTab("youtube");
+              navigate("?tab=youtube");
+
+              // clickHandler("youTube");
             }}
           >
             Youtube
-          </Link>
+          </li>
         </SocialMenu>
 
         <ImageBlocks
-          data={data}
+          data={categoryData}
           clickedModal={clickedModal}
           setClickedModal={setClickedModal}
         />
@@ -101,9 +106,14 @@ const SocialMenu = styled.ul`
   li:hover {
     opacity: 0.5;
   }
-
+  #all {
+    color: ${({ tab }) => (tab === "all" ? "red" : "white")};
+  }
+  #web {
+    color: ${({ tab }) => (tab === "web" ? "red" : "white")};
+  }
   #youtube {
-    color: red;
+    color: ${({ tab }) => (tab === "youtube" ? "red" : "white")};
   }
 `;
 export default Review;
