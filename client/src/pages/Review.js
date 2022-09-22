@@ -1,52 +1,42 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import * as Api from "../api";
-import {DUMMY_DATA} from "../assets/dummy";
-import {Routes, Route, Link} from "react-router-dom";
+import { DUMMY_DATA } from "../assets/dummy";
+import { Routes, Route, Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getYoutube } from "../react-query/queryFunction";
 
 function Review() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [clickedModal, setClickedModal] = useState({id: "", isModal: false});
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    try {
-      const result = await getYoutube();
-      const reviewData = result.map(({snippet, id}) => {
-        return {
-          tab: "youTube",
-          img_URL: snippet.thumbnails.medium.url,
-          title: snippet.title,
-          link_URL: id.videoId,
-        };
-      });
-      reviewData.push(...DUMMY_DATA);
-      console.log("data", reviewData);
-      setData(reviewData);
-      setIsLoading(false);
-    } catch (err) {
-      console.error(err);
+  const { isLoading, data, isError, error, isFetching } = useQuery(
+    ["review"],
+    getYoutube,
+    {
+      staleTime: 600 * 1000,
     }
+  );
+  const [categoryData, setCategoryData] = useState();
+
+  const [clickedModal, setClickedModal] = useState({ id: "", isModal: false });
+
+  console.log("data", data);
+
+  function clickHandler(category) {
+    const filteredData = data.filter((el) => el.tab === category);
+    setCategoryData(filteredData);
   }
 
-  async function getYoutube() {
-    const res = await Api.get("/api/youtube");
-    const items = res.data.items;
-    return items;
+  if (isLoading) {
+    return <h1>Loading...</h1>;
   }
-  function clickHandler(category) {
-    const tmpData = data.filter((ele) => ele.tab === category);
-    console.log(tmpData, "wpqkfwpqkf");
-    setData(tmpData);
+  if (isError) {
+    return <h1>Error: ${error.message}</h1>;
   }
 
   return (
     <>
+      {isFetching ? <h1>Fetching...</h1> : ""}
       <Container>
         <Header isAbout={true} />
         <SocialMenu>
@@ -80,13 +70,12 @@ function Review() {
             Youtube
           </Link>
         </SocialMenu>
-        {!isLoading && (
-          <ImageBlocks
-            data={data}
-            clickedModal={clickedModal}
-            setClickedModal={setClickedModal}
-          />
-        )}
+
+        <ImageBlocks
+          data={data}
+          clickedModal={clickedModal}
+          setClickedModal={setClickedModal}
+        />
       </Container>
     </>
   );
@@ -113,7 +102,7 @@ const SocialMenu = styled.ul`
     opacity: 0.5;
   }
 
-  #all {
+  #youtube {
     color: red;
   }
 `;
