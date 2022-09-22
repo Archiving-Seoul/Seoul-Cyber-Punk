@@ -5,83 +5,74 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
 import Photo from "./Photo";
 import EnlargePhoto from "./EnlargePhoto";
-import { useEffect } from "react";
 
-function GallerySlider({ firstImg, secondImg, isLoading, combineMood, isOld }) {
+function GallerySlider({ firstImg, secondImg, combineMood, isOld }) {
   const [moveLeft, setMoveLeft] = useState(false);
   const [clickedIndex, setClickedIndex] = useState("");
   const photoBoxRef1 = useRef();
   const photoBoxRef2 = useRef();
 
-  useEffect(() => {
-    console.log("인덱", clickedIndex);
-  }, [clickedIndex]);
-
   return (
     <>
-      {!isLoading && (
-        <>
-          <EnlargePhoto clickedIndex={clickedIndex} combineMood={combineMood} />
-          <GalleryContainer moveLeft={moveLeft}>
-            <ButtonBox>
-              <LeftButton
-                moveLeft={moveLeft}
-                onClick={() => {
-                  setMoveLeft(true);
-                  photoBoxRef1.current.style.transform = "translateX(-1326px)";
-                  photoBoxRef2.current.style.transform = "translateX(-1326px)";
-                }}
-              >
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </LeftButton>
-            </ButtonBox>
-            <PhotoContainer>
-              <PhotoBox ref={photoBoxRef1}>
-                {firstImg &&
-                  firstImg.map((el, idx) => {
-                    return (
-                      <Photo
-                        key={el._id}
-                        isOld={isOld}
-                        isFirst={true}
-                        index={idx}
-                        subURL={el.subURL}
-                        setClickedIndex={setClickedIndex}
-                      />
-                    );
-                  })}
-              </PhotoBox>
-              <PhotoBox ref={photoBoxRef2}>
-                {secondImg &&
-                  secondImg.map((el, idx) => {
-                    return (
-                      <Photo
-                        isOld={isOld}
-                        key={el._id}
-                        isFirst={false}
-                        index={idx}
-                        subURL={el.subURL}
-                        setClickedIndex={setClickedIndex}
-                      />
-                    );
-                  })}
-              </PhotoBox>
-            </PhotoContainer>
-            <ButtonBox>
-              <RightButton
-                moveLeft={moveLeft}
-                onClick={() => {
-                  setMoveLeft(false);
-                  photoBoxRef1.current.style.transform = "translateX(1px)";
-                  photoBoxRef2.current.style.transform = "translateX(1px)";
-                }}
-              >
-                <FontAwesomeIcon icon={faArrowRight} />
-              </RightButton>
-            </ButtonBox>
-          </GalleryContainer>
-        </>
-      )}
+      <EnlargePhoto clickedIndex={clickedIndex} combineMood={combineMood} />
+      <GalleryContainer moveLeft={moveLeft}>
+        <ButtonBox>
+          <LeftButton
+            moveLeft={moveLeft}
+            onClick={() => {
+              setMoveLeft(true);
+              photoBoxRef1.current.style.transform = "translateX(-1326px)";
+              photoBoxRef2.current.style.transform = "translateX(-1326px)";
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </LeftButton>
+        </ButtonBox>
+        <PhotoContainer>
+          <PhotoBox ref={photoBoxRef1}>
+            {firstImg &&
+              firstImg.map((el, idx) => {
+                return (
+                  <Photo
+                    key={el._id}
+                    isOld={isOld}
+                    isFirst={true}
+                    index={idx}
+                    subURL={el.subURL}
+                    setClickedIndex={setClickedIndex}
+                  />
+                );
+              })}
+          </PhotoBox>
+          <PhotoBox ref={photoBoxRef2}>
+            {secondImg &&
+              secondImg.map((el, idx) => {
+                return (
+                  <Photo
+                    isOld={isOld}
+                    key={el._id}
+                    isFirst={false}
+                    index={idx}
+                    subURL={el.subURL}
+                    setClickedIndex={setClickedIndex}
+                  />
+                );
+              })}
+          </PhotoBox>
+        </PhotoContainer>
+        <ButtonBox>
+          <RightButton
+            moveLeft={moveLeft}
+            onClick={() => {
+              setMoveLeft(false);
+              photoBoxRef1.current.style.transform = "translateX(1px)";
+              photoBoxRef2.current.style.transform = "translateX(1px)";
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </RightButton>
+        </ButtonBox>
+      </GalleryContainer>
     </>
   );
 }

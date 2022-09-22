@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 import Modal from "./Modal";
 
-function ImageBlocks({data, clickedModal, setClickedModal}) {
+function ImageBlocks({ data, clickedModal, setClickedModal }) {
   return (
     <>
       {clickedModal.isModal && (
@@ -10,53 +10,25 @@ function ImageBlocks({data, clickedModal, setClickedModal}) {
       )}
       <BlockBox>
         <GridBox>
-          {/* {} */}
-          <PhotoBlock
-            setClickedModal={setClickedModal}
-            id="height_long"
-            imgURL={data && data[6].img_URL}
-            title={data && data[6].title}
-            linkURL={data && data[6].link_URL}
-          />
-          <PhotoBlock
-            setClickedModal={setClickedModal}
-            imgURL={data && data[0].img_URL}
-            title={data && data[0].title}
-            linkURL={data && data[0].link_URL}
-          />
-          <PhotoBlock
-            setClickedModal={setClickedModal}
-            imgURL={data && data[1].img_URL}
-            title={data && data[1].title}
-            linkURL={data && data[1].link_URL}
-          />
-          <PhotoBlock
-            setClickedModal={setClickedModal}
-            imgURL={data && data[2].img_URL}
-            title={data && data[2].title}
-            linkURL={data && data[2].link_URL}
-          />
-          <PhotoBlock
-            setClickedModal={setClickedModal}
-            imgURL={data && data[3].img_URL}
-            title={data && data[3].title}
-            linkURL={data && data[3].link_URL}
-          />
-          <PhotoBlock
-            id="width_long"
-            setClickedModal={setClickedModal}
-            imgURL={data && data[4].img_URL}
-            title={data && data[4].title}
-            linkURL={data && data[4].link_URL}
-          />
+          {data.map((el, idx) => {
+            return (
+              <PhotoBlock
+                key={idx}
+                setClickedModal={setClickedModal}
+                imgURL={el.imgURL}
+                title={el.title}
+                linkURL={el.videoId}
+              />
+            );
+          })}
         </GridBox>
         <MainPhotoBox>
-          <PhotoBlock
+          {/* <PhotoBlock
             setClickedModal={setClickedModal}
-            imgURL={data && data[5].img_URL}
-            title={data && data[5].title}
-            linkURL={data && data[5].link_URL}
-          />
+            imgURL={data[6].imgURL}
+            title={data[6].title}
+            linkURL={data[6].videoId}
+          /> */}
         </MainPhotoBox>
         <LogoTitle>CYBERPUNKSEOUL</LogoTitle>
       </BlockBox>
@@ -74,7 +46,7 @@ const GridBox = styled.div`
   width: 100%;
   margin-bottom: 64px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   row-gap: 14px;
   column-gap: 14px;
 `;
