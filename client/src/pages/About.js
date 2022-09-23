@@ -9,12 +9,17 @@ import DayNightMain from "../components/about/DayNightMain";
 import GallerySlider from "../components/about/gallerySlider/GallerySlider";
 import Favorite from "../components/about/favorite/Favorite";
 import Footer from "../components/about/Footer";
+import { Loading } from "../components/Loading";
 
 function About() {
   const { isLoading, isError, data, error } = useQuery(["about"], getAllInfo);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
   if (isError) {
     return <h1>Error: ${error.message}</h1>;

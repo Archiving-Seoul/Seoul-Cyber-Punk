@@ -7,6 +7,7 @@ import { DUMMY_DATA } from "../assets/dummy";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getYoutube } from "../react-query/queryFunction";
+import { Loading } from "../components/Loading";
 
 function Review() {
   const navigate = useNavigate();
@@ -40,7 +41,11 @@ function Review() {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
   if (isError) {
     return <h1>Error: ${error.message}</h1>;
