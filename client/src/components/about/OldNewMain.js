@@ -72,7 +72,6 @@ const IconBox = styled.div`
   width: 56px;
   height: 45px;
   font-size: 50px;
-  cursor: pointer;
 
   :hover {
     opacity: 0.5;
