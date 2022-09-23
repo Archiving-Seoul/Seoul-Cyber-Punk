@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
 import Modal from "./Modal";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function SpotList({spots, title}) {
   const [modal, setModal] = useState(false);
@@ -23,26 +26,36 @@ function SpotList({spots, title}) {
       )}
       <Wrapper>
         <CategoryName>{title}</CategoryName>
-        <Thumnails>
+        <Thumnails {...settings}>
           {spots &&
             spots.map((ele, idx) => (
-              <ThumBox
-                key={idx}
-                URL={ele.imgURL}
-                onClick={() => {
-                  setModal(true);
-                  setActiveData(ele);
-                  document.body.style.overflow = "hidden";
-                }}
-              >
-                <ThumText>{ele.name}</ThumText>
-              </ThumBox>
+              <SlideBox>
+                <ThumBox
+                  key={idx}
+                  URL={ele.imgURL}
+                  onClick={() => {
+                    setModal(true);
+                    setActiveData(ele);
+                    document.body.style.overflow = "hidden";
+                  }}
+                >
+                  <ThumText>{ele.name}</ThumText>
+                </ThumBox>
+              </SlideBox>
             ))}
         </Thumnails>
       </Wrapper>
     </>
   );
 }
+const SlideBox = styled.div``;
+const settings = {
+  dots: false,
+  speed: 400,
+  Infinite: true,
+  slidesToshow: 4,
+  SlidesToScroll: 4,
+};
 const Wrapper = styled.div`
   position: relative;
   top: -70px;
@@ -59,16 +72,27 @@ const CategoryName = styled.div`
   line-height: 24px;
   padding-top: 20px;
 `;
-const Thumnails = styled.div`
-  width: 100%;
+const Thumnails = styled(Slider)`
+  width: 1400px;
   margin: 25px 0;
-  overflow: scroll;
-  overflow: auto;
+  /* overflow: scroll; */
+  /* overflow: auto; */
   display: flex;
-  white-space: nowrap;
-  flex-direction: row;
+  /* white-space: nowrap; */
+  /* flex-direction: row; */
   align-items: flex-start;
-  gap: 14px;
+  /* gap: 14px; */
+  .slick-list {
+    overflow: hidden;
+    /* width: 100%;
+    height: 188px; */
+  }
+  .slick-slide {
+    width: 340px !important;
+  }
+  .slide-track {
+    width: 1300px;
+  }
 `;
 const hoverIn = keyframes`
 from {
