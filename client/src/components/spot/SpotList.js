@@ -85,11 +85,11 @@ const hoverOut = keyframes`
   from {
     width: 360px;
     height: 228px;
-    z-index: 999;
+    opacity: 0.2;
   }
   to {
     width: 320px;
-  height: 188px;
+   height: 188px;
   }
 `;
 
@@ -111,10 +111,7 @@ const ThumBox = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 10px;
-  animation: ${hoverOut} 0.5s ease-in-out;
-  &::before {
-    animation: ${hoverOut} 0.5s ease-in-out;
-  }
+  animation: ${hoverOut} 0.4s ease-in-out;
   &:hover {
     background: linear-gradient(
         to bottom,
