@@ -3,7 +3,8 @@ import Header from "../components/common/Header";
 import Preview from "../components/spot/Preview";
 import SpotList from "../components/spot/SpotList";
 import * as api from "../api";
-import {useQuery} from "react-query";
+import {useEffect, useState} from "react";
+import {useQuery} from "@tanstack/react-query";
 
 function Spot() {
   async function getSpot() {
