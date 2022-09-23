@@ -5,7 +5,7 @@ import Modal from "./Modal";
 function ImageBlocks({ data, clickedModal, setClickedModal }) {
   return (
     <>
-      {clickedModal.isModal && (
+      {clickedModal.tab === "youtube" && clickedModal.isModal && (
         <Modal setClickedModal={setClickedModal} clickedModal={clickedModal} />
       )}
       <BlockBox>
@@ -14,10 +14,11 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
             return (
               <PhotoBlock
                 key={idx}
+                tab={el.tab}
                 setClickedModal={setClickedModal}
                 imgURL={el.imgURL}
                 title={el.title}
-                linkURL={el.videoId}
+                linkURL={el.linkURL}
               />
             );
           })}

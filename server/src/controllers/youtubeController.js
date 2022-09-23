@@ -32,9 +32,10 @@ const youtubeController = {
       const yotubeArr = await result.data.items;
       const reviewData = yotubeArr.map((el) => {
         return {
+          tab: "youtube",
           imgURL: el.snippet.thumbnails.high.url,
           title: el.snippet.title,
-          videoId: el.id.videoId,
+          linkURL: el.id.videoId,
         };
       });
       // const res = await youtubeModel.addYoutube(yotubeArr);

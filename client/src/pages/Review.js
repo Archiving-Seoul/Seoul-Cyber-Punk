@@ -15,17 +15,28 @@ function Review() {
     getYoutube,
     {
       staleTime: 600 * 1000,
+      select: (data) => {
+        return data.concat(DUMMY_DATA);
+      },
     }
   );
   const [categoryData, setCategoryData] = useState(data);
   const [tab, setTab] = useState("all");
-  const [clickedModal, setClickedModal] = useState({ id: "", isModal: false });
+  const [clickedModal, setClickedModal] = useState({
+    id: "",
+    isModal: false,
+    tab: "",
+  });
 
   console.log("data", data);
 
   function clickHandler(category) {
-    const filteredData = data.filter((el) => el.tab === category);
-    setCategoryData(filteredData);
+    if (category === "all") {
+      setCategoryData(data);
+    } else {
+      const filteredData = data.filter((el) => el.tab === category);
+      setCategoryData(filteredData);
+    }
   }
 
   if (isLoading) {
@@ -46,8 +57,7 @@ function Review() {
             onClick={() => {
               setTab("all");
               navigate("?tab=all");
-
-              // clickHandler("all");
+              clickHandler("all");
             }}
           >
             All
@@ -58,7 +68,7 @@ function Review() {
               setTab("web");
               navigate("?tab=web");
 
-              // clickHandler("web");
+              clickHandler("web");
             }}
           >
             Blog
@@ -69,7 +79,7 @@ function Review() {
               setTab("youtube");
               navigate("?tab=youtube");
 
-              // clickHandler("youTube");
+              clickHandler("youtube");
             }}
           >
             Youtube
