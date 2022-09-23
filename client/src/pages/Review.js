@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import * as Api from "../api";
-import {DUMMY_DATA} from "../assets/dummy";
-import {Routes, Route, Link, useNavigate} from "react-router-dom";
-import {useQuery} from "@tanstack/react-query";
-import {getYoutube} from "../react-query/queryFunction";
+import { DUMMY_DATA } from "../assets/dummy";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getYoutube } from "../react-query/queryFunction";
 
 function Review() {
   const navigate = useNavigate();
-  const {isLoading, data, isError, error, isFetching} = useQuery(
+
+  const { isLoading, data, isError, error, isFetching } = useQuery(
     ["review"],
     getYoutube,
     {
@@ -20,15 +21,14 @@ function Review() {
       },
     }
   );
-  const [categoryData, setCategoryData] = useState(data);
+  const [categoryData, setCategoryData] = useState([]);
+
   const [tab, setTab] = useState("all");
   const [clickedModal, setClickedModal] = useState({
     id: "",
     isModal: false,
     tab: "",
   });
-
-  console.log("data", data);
 
   function clickHandler(category) {
     if (category === "all") {
@@ -49,51 +49,58 @@ function Review() {
   return (
     <>
       {isFetching ? <h1>Fetching...</h1> : ""}
-      {data && (
-        <Container>
-          <Header isAbout={true} />
-          <SocialMenu tab={tab}>
-            <li
-              id="all"
-              onClick={() => {
-                setTab("all");
-                navigate("?tab=all");
-                clickHandler("all");
-              }}
-            >
-              All
-            </li>
-            <li
-              id="web"
-              onClick={() => {
-                setTab("web");
-                navigate("?tab=web");
 
-                clickHandler("web");
-              }}
-            >
-              Blog
-            </li>
-            <li
-              id="youtube"
-              onClick={() => {
-                setTab("youtube");
-                navigate("?tab=youtube");
+      <Container>
+        <Header isAbout={true} />
+        <SocialMenu tab={tab}>
+          <li
+            id="all"
+            onClick={() => {
+              setTab("all");
+              navigate("?tab=all");
+              clickHandler("all");
+            }}
+          >
+            All
+          </li>
+          <li
+            id="web"
+            onClick={() => {
+              setTab("web");
+              navigate("?tab=web");
 
-                clickHandler("youtube");
-              }}
-            >
-              Youtube
-            </li>
-          </SocialMenu>
+              clickHandler("web");
+            }}
+          >
+            Blog
+          </li>
+          <li
+            id="youtube"
+            onClick={() => {
+              setTab("youtube");
+              navigate("?tab=youtube");
 
+              clickHandler("youtube");
+            }}
+          >
+            Youtube
+          </li>
+        </SocialMenu>
+
+        {categoryData.length === 0 ? (
+          <ImageBlocks
+            data={data}
+            clickedModal={clickedModal}
+            setClickedModal={setClickedModal}
+          />
+        ) : (
           <ImageBlocks
             data={categoryData}
             clickedModal={clickedModal}
             setClickedModal={setClickedModal}
           />
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 }
@@ -119,13 +126,13 @@ const SocialMenu = styled.ul`
     opacity: 0.5;
   }
   #all {
-    color: ${({tab}) => (tab === "all" ? "red" : "white")};
+    color: ${({ tab }) => (tab === "all" ? "red" : "white")};
   }
   #web {
-    color: ${({tab}) => (tab === "web" ? "red" : "white")};
+    color: ${({ tab }) => (tab === "web" ? "red" : "white")};
   }
   #youtube {
-    color: ${({tab}) => (tab === "youtube" ? "red" : "white")};
+    color: ${({ tab }) => (tab === "youtube" ? "red" : "white")};
   }
 `;
 export default Review;
