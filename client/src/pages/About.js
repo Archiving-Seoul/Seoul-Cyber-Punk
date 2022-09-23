@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import { getAllInfo } from "../react-query/queryFunction";
+
 import AboutMain from "../components/about/AboutMain";
 import AboutIntroMap from "../components/about/aboutIntroMap/AboutIntroMap";
 import AboutDescription from "../components/about/AboutDescription";
@@ -6,8 +9,6 @@ import DayNightMain from "../components/about/DayNightMain";
 import GallerySlider from "../components/about/gallerySlider/GallerySlider";
 import Favorite from "../components/about/favorite/Favorite";
 import Footer from "../components/about/Footer";
-import { useQuery } from "@tanstack/react-query";
-import { getAllInfo } from "../react-query/queryFunction";
 
 function About() {
   const { isLoading, isError, data, error } = useQuery(["about"], getAllInfo);
@@ -18,6 +19,7 @@ function About() {
   if (isError) {
     return <h1>Error: ${error.message}</h1>;
   }
+
   return (
     <>
       <AboutMain />
