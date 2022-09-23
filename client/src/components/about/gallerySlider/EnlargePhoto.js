@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import { useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { useEffect, useRef } from "react";
+import styled from "styled-components";
 
 function EnlargePhoto({ combineMood, clickedIndex }) {
   const sliderRef = useRef(null);

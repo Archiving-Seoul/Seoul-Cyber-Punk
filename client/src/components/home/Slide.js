@@ -47,8 +47,9 @@ const settings = {
     return <CustomDot>{SEOULS_NAME[i]}</CustomDot>;
   },
   speed: 400,
-  // autoplay: true,
+  Infinite: true,
   vertical: true,
+  autoplay: true,
   autoplaySpeed: 2000,
   slidesToshow: 1,
   SlidesToScroll: 1,

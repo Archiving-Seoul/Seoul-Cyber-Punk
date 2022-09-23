@@ -8,13 +8,19 @@ function AboutMain() {
     "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/gr.png";
   const BLACK_BACKGROUND_URL =
     "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/home/home.png";
+
+  function scrollHandler() {
+    window.scrollTo({
+      top: 1000,
+      behavior: "smooth",
+    });
+  }
   return (
     <BackgroundBox BACKGROUND_URL={COLOR_URL}>
       <Header isHome={false} isAbout={true} />
       <OverlayImg BACKGROUND_URL={BLACK_BACKGROUND_URL}></OverlayImg>
-
       <TitleText>CYBERPUNKSEOUL</TitleText>
-      <IconBox>
+      <IconBox onClick={scrollHandler}>
         <FontAwesomeIcon icon={faArrowDown} />
       </IconBox>
     </BackgroundBox>

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import Modal from "./Modal";
 
 function SpotList({spots, title}) {
@@ -34,14 +34,15 @@ function SpotList({spots, title}) {
                   setActiveData(ele);
                   document.body.style.overflow = "hidden";
                 }}
-              ></ThumBox>
+              >
+                <ThumText>{ele.name}</ThumText>
+              </ThumBox>
             ))}
         </Thumnails>
       </Wrapper>
     </>
   );
 }
-
 const Wrapper = styled.div`
   position: relative;
   top: -70px;
@@ -60,7 +61,7 @@ const CategoryName = styled.div`
 `;
 const Thumnails = styled.div`
   width: 100%;
-  margin: 18px 0;
+  margin: 25px 0;
   overflow: scroll;
   overflow: auto;
   display: flex;
@@ -69,15 +70,48 @@ const Thumnails = styled.div`
   align-items: flex-start;
   gap: 14px;
 `;
+const hoverIn = keyframes`
+from {
+  width: 320px;
+  height: 188px;
+  }
+  to {
+    width: 360px;
+    height: 228px;
+    z-index: 999;
+  }
+  `;
+const hoverOut = keyframes`
+  from {
+    width: 360px;
+    height: 228px;
+    opacity: 0.2;
+  }
+  to {
+    width: 320px;
+   height: 188px;
+  }
+`;
+
+const ThumText = styled.div`
+  font-weight: 400;
+  font-size: 22px;
+  align-self: flex-end;
+  margin: 25px;
+  display: none;
+`;
 const ThumBox = styled.div`
   cursor: pointer;
   flex-shrink: 0;
-  width: 328px;
-  height: 196px;
+  display: flex;
+  width: 320px;
+  height: 188px;
   background-image: url(${(props) => props.URL});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius: 10px;
+  animation: ${hoverOut} 0.4s ease-in-out;
   &:hover {
     background: linear-gradient(
         to bottom,
@@ -88,6 +122,10 @@ const ThumBox = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    animation: ${hoverIn} 0.4s linear forwards;
+    div {
+      display: block;
+    }
   }
 `;
 export default SpotList;

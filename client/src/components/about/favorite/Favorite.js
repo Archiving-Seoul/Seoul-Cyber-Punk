@@ -1,7 +1,27 @@
 import styled from "styled-components";
 import SelectItem from "./SelectItem";
+import { useState } from "react";
 
 function Favorite() {
+  const [select, setSelect] = useState([
+    { mood: "OLD", isSelect: false },
+    { mood: "NEW", isSelect: false },
+    { mood: "DAY", isSelect: false },
+    { mood: "NIGHT", isSelect: false },
+  ]);
+  function selectHandler(mood) {
+    const newSelect = select.map((el) => {
+      return el.mood !== mood
+        ? { ...el, isSelect: false }
+        : { ...el, isSelect: true };
+    });
+    setSelect(newSelect);
+  }
+
+  function filteredSelect(mood) {
+    const result = select.find((el) => el.mood === mood);
+    return result;
+  }
   return (
     <Container>
       <Title>Favorite</Title>
@@ -12,24 +32,32 @@ function Favorite() {
           imgURL={
             "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_1.png"
           }
+          select={filteredSelect("OLD")}
+          selectHandler={selectHandler}
         />
         <SelectItem
           title={"NEW"}
           imgURL={
             "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_2.png"
           }
+          select={filteredSelect("NEW")}
+          selectHandler={selectHandler}
         />
         <SelectItem
           title={"DAY"}
           imgURL={
             "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_3.png"
           }
+          select={filteredSelect("DAY")}
+          selectHandler={selectHandler}
         />
         <SelectItem
           title={"NIGHT"}
           imgURL={
             "https://seoul-cyber-punk.s3.ap-northeast-2.amazonaws.com/about-background/10_4.png"
           }
+          select={filteredSelect("NIGHT")}
+          selectHandler={selectHandler}
         />
       </SelectBox>
     </Container>
