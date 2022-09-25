@@ -1,5 +1,5 @@
 import axios from "axios";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || "http://localhost:5000";
 async function get(apiUrl) {
   const result = await axios.get(
     `${process.env.REACT_APP_BASE_URL || PORT}${apiUrl}`,
