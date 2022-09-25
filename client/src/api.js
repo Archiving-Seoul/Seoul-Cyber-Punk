@@ -1,9 +1,12 @@
 import axios from "axios";
 
 async function get(apiUrl) {
-  const result = await axios.get(`${process.env.REACT_APP_BASE_URL}${apiUrl}`, {
-    withCredentials: true,
-  });
+  const result = await axios.get(
+    `${process.env.REACT_APP_BASE_URL || 5000}${apiUrl}`,
+    {
+      withCredentials: true,
+    }
+  );
 
   if (!result) {
     throw new Error("ERROR");
@@ -53,4 +56,4 @@ async function del(apiUrl) {
   return result;
 }
 
-export { get, post, patch, del as delete };
+export {get, post, patch, del as delete};
