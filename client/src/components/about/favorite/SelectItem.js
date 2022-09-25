@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-function SelectItem({ title, imgURL }) {
+function SelectItem({ title, imgURL, selectHandler, select }) {
   return (
-    <ItemBox>
+    <ItemBox
+      onClick={() => {
+        selectHandler(title);
+      }}
+      select={select}
+    >
       <img src={imgURL} alt={title} />
       <Text>{title}</Text>
     </ItemBox>
@@ -15,6 +20,7 @@ const ItemBox = styled.div`
   border-radius: 50%;
   position: relative;
   cursor: pointer;
+  border: ${({ select }) => (select.isSelect === true ? "3px solid red" : "")};
 
   :hover {
     opacity: 0.8;

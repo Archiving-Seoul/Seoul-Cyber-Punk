@@ -3,11 +3,10 @@ import Header from "../components/common/Header";
 import Preview from "../components/spot/Preview";
 import SpotList from "../components/spot/SpotList";
 import * as api from "../api";
-import {useEffect, useState} from "react";
-import {useQuery} from "react-query";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 function Spot() {
-  const [cateogry, setCategory] = useState("");
   async function getSpot() {
     try {
       const res = await api.get(`/api/spot`);
@@ -17,7 +16,7 @@ function Spot() {
       throw new Error(`${error} : 데이터를 받아올 수 없습니다.`);
     }
   }
-  const {isLoading, data} = useQuery([`${"popular"}`], () => getSpot(), {
+  const { isLoading, data } = useQuery([`${"popular"}`], () => getSpot(), {
     select: (data) => {
       const tmpData = data.data.filter((ele) =>
         ele.category.includes("popular")
@@ -26,12 +25,6 @@ function Spot() {
     },
   });
   console.log(data, isLoading);
-  // const popular = data.data.filter((ele) => ele.category.includes("popular"));
-  // function filteredData(category) {
-  //   return data.data.filter((ele) => ele.category.contains("popular"));
-  // }
-  // const popular = filteredData("popular");
-  // console.log(popular);
   return (
     <Container>
       <Header />

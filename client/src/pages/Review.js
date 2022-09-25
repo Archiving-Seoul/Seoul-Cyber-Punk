@@ -1,88 +1,106 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import * as Api from "../api";
-import {DUMMY_DATA} from "../assets/dummy";
-import {Routes, Route, Link} from "react-router-dom";
+import { DUMMY_DATA } from "../assets/dummy";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getYoutube } from "../react-query/queryFunction";
+import { Loading } from "../components/Loading";
 
 function Review() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [clickedModal, setClickedModal] = useState({id: "", isModal: false});
-  useEffect(() => {
-    getData();
-  }, []);
+  const navigate = useNavigate();
 
-  async function getData() {
-    try {
-      const result = await getYoutube();
-      const reviewData = result.map(({snippet, id}) => {
-        return {
-          tab: "youTube",
-          img_URL: snippet.thumbnails.medium.url,
-          title: snippet.title,
-          link_URL: id.videoId,
-        };
-      });
-      reviewData.push(...DUMMY_DATA);
-      console.log("data", reviewData);
-      setData(reviewData);
-      setIsLoading(false);
-    } catch (err) {
-      console.error(err);
+  const { isLoading, data, isError, error, isFetching } = useQuery(
+    ["review"],
+    getYoutube,
+    {
+      staleTime: 600 * 1000,
+      select: (data) => {
+        return data.concat(DUMMY_DATA);
+      },
+    }
+  );
+  const [categoryData, setCategoryData] = useState([]);
+
+  const [tab, setTab] = useState("all");
+  const [clickedModal, setClickedModal] = useState({
+    id: "",
+    isModal: false,
+    tab: "",
+  });
+
+  function clickHandler(category) {
+    if (category === "all") {
+      setCategoryData(data);
+    } else {
+      const filteredData = data.filter((el) => el.tab === category);
+      setCategoryData(filteredData);
     }
   }
 
-  async function getYoutube() {
-    const res = await Api.get("/api/youtube");
-    const items = res.data.items;
-    return items;
+  if (isLoading) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
-  function clickHandler(category) {
-    const tmpData = data.filter((ele) => ele.tab === category);
-    console.log(tmpData, "wpqkfwpqkf");
-    setData(tmpData);
+  if (isError) {
+    return <h1>Error: ${error.message}</h1>;
   }
 
   return (
     <>
+      {isFetching ? <h1>Fetching...</h1> : ""}
+
       <Container>
         <Header isAbout={true} />
-        <SocialMenu>
-          <Routes>
-            {/* <Route path="" element={<ImageBlocks />} /> */}
-            <Route path="review/youtube" element={<ImageBlocks />} />
-            <Route path="review/blog" element={<ImageBlocks />} />
-          </Routes>
-          <Link
-            to=""
+        <SocialMenu tab={tab}>
+          <li
+            id="all"
             onClick={() => {
+              setTab("all");
+              navigate("?tab=all");
               clickHandler("all");
             }}
           >
             All
-          </Link>
-          <Link
-            to="/review/blog"
+          </li>
+          <li
+            id="web"
             onClick={() => {
+              setTab("web");
+              navigate("?tab=web");
+
               clickHandler("web");
             }}
           >
             Blog
-          </Link>
-          <Link
-            to="/review/youtube"
+          </li>
+          <li
+            id="youtube"
             onClick={() => {
-              clickHandler("youTube");
+              setTab("youtube");
+              navigate("?tab=youtube");
+
+              clickHandler("youtube");
             }}
           >
             Youtube
-          </Link>
+          </li>
         </SocialMenu>
-        {!isLoading && (
+
+        {categoryData.length === 0 ? (
           <ImageBlocks
             data={data}
+            clickedModal={clickedModal}
+            setClickedModal={setClickedModal}
+          />
+        ) : (
+          <ImageBlocks
+            data={categoryData}
             clickedModal={clickedModal}
             setClickedModal={setClickedModal}
           />
@@ -112,9 +130,14 @@ const SocialMenu = styled.ul`
   li:hover {
     opacity: 0.5;
   }
-
   #all {
-    color: red;
+    color: ${({ tab }) => (tab === "all" ? "red" : "white")};
+  }
+  #web {
+    color: ${({ tab }) => (tab === "web" ? "red" : "white")};
+  }
+  #youtube {
+    color: ${({ tab }) => (tab === "youtube" ? "red" : "white")};
   }
 `;
 export default Review;

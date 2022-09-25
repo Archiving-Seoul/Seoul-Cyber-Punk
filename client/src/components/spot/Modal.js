@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
+import {useEffect, useRef} from "react";
+import styled, {keyframes} from "styled-components";
 
-function Modal({ data, isModal, closeModal }) {
+function Modal({data, isModal, closeModal}) {
   const modalRef = useRef();
   useEffect(() => {
     document.addEventListener("click", clickModalOutside, true);
@@ -53,6 +53,16 @@ const ModalLayer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const popAni = keyframes`
+  from {
+    transform: translateY(70px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+`;
 const ModalBox = styled.div`
   width: 1124px;
   height: 711px;
@@ -64,7 +74,9 @@ const ModalBox = styled.div`
   background-size: cover;
   padding: 44px;
   box-sizing: border-box;
+  animation: ${popAni} 0.3s linear;
 `;
+
 const Container = styled.div`
   /* border: 1px solid white; */
   width: 100%;
