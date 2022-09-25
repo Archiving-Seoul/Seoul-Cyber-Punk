@@ -1,9 +1,8 @@
 {
   "name": "server",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
-    "start": "nodemon server.js --exec babel-node"
+    "start": "babel-node server.js"
   },
   "dependencies": {
     "@babel/node": "^7.18.10",
