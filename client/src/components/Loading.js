@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import logo from "../assets/images/logo.png";
+import loading from "../assets/images/loading.png";
 export function Loading() {
   return (
     <ImgBox>
-      <Img src={logo} alt="로고" />
+      <Img src={loading} alt="로고" />
     </ImgBox>
   );
 }

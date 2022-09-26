@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+import TypeIt from "typeit-react";
 
 function Header({ isHome, isAbout }) {
   const currentURL = useLocation().pathname.split("/")[1];
@@ -7,9 +8,17 @@ function Header({ isHome, isAbout }) {
 
   return (
     <Wrapper isAbout={isAbout}>
-      <TitleLogo>
-        {isHome && <div className="typo">CYBERPUNKSEOUL</div>}
-      </TitleLogo>
+      {isHome && (
+        <TypeIt
+          getBeforeInit={(instance) => {
+            instance.type("CYBERPUNKSEOUL").pause(1000);
+            return instance;
+          }}
+          options={{ cursor: false }}
+          style={TitleLogo}
+        />
+      )}
+
       <NavBar>
         <ul className="menu">
           <MenuTag
@@ -59,16 +68,16 @@ const Wrapper = styled.div`
   right: ${({ isAbout }) => (isAbout ? "0px" : "")};
   z-index: ${({ isAbout }) => (isAbout ? "999" : "")};
 `;
-const TitleLogo = styled.div`
-  font-size: 24px;
-  font-weight: 400;
-  color: #ff0000;
-  margin: auto auto;
-  .typo {
-    margin-left: 45%;
-    font-family: "Stretch Pro Regular", sans-serif;
-  }
-`;
+
+const TitleLogo = {
+  fontSize: "24px",
+  fontWeight: "400",
+  color: "#ff0000",
+  margin: "auto auto",
+  fontFamily: '"Stretch Pro Regular", sans-serif',
+  marginLeft: "45%",
+};
+
 const MenuTag = styled.li`
   color: ${(props) => (props.selectedMenu ? "red" : "white")};
 `;

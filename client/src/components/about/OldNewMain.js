@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import TypeIt from "typeit-react";
 
 function OldNewMain() {
   const BACKGROUND_URL =
@@ -9,6 +10,15 @@ function OldNewMain() {
     <>
       <Container>
         <Img src={BACKGROUND_URL} />
+        {/* <TypeIt
+          getBeforeInit={(instance) => {
+            instance.type("OLD & NEW").pause(750);
+            return instance;
+          }}
+          options={{ cursor: false }}
+          style={MainText}
+        /> */}
+
         <MainText>OLD & NEW</MainText>
       </Container>
       <SubBox>
@@ -45,6 +55,17 @@ const MainText = styled.h1`
   line-height: 180px;
   color: #ff0000;
 `;
+
+// const MainText = {
+//   position: "absolute",
+//   left: "136px",
+//   top: "438px",
+//   fontFamily: "Stretch Pro Regular, sans-serif",
+//   fontWeight: "400",
+//   fontSize: "140px",
+//   lineHeight: "180px",
+//   color: "#ff0000",
+// };
 
 const SubBox = styled.article`
   position: relative;
