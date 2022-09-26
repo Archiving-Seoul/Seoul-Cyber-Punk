@@ -24,4 +24,5 @@ const Container = styled.div`
   width: 1440px;
   margin: auto;
 `;
+
 export default Home;

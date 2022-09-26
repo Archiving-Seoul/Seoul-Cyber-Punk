@@ -2,7 +2,9 @@ import axios from "axios";
 
 async function get(apiUrl) {
   const result = await axios.get(
-    `${process.env.REACT_APP_BASE_URL || "http://localhost:5000"}${apiUrl}`,
+    `${
+      process.env.REACT_APP_BASE_URL || "https://seoul-cyber-punk.herokuapp.com"
+    }${apiUrl}`,
     {
       withCredentials: true,
     }
