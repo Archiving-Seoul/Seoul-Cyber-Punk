@@ -4,6 +4,7 @@ import Spot from "./pages/Spot";
 import About from "./pages/About";
 import Review from "./pages/Review";
 import { Loading } from "./components/Loading";
+import { ScrollPrac } from "./pages/Scroll";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/review/*" element={<Review />} />
         {/* <Route path="/loading" element={<Loading />} /> */}
+        <Route path="/scroll" element={<ScrollPrac />} />
       </Routes>
     </BrowserRouter>
   );
