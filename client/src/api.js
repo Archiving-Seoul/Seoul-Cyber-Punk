@@ -1,14 +1,9 @@
 import axios from "axios";
 
 async function get(apiUrl) {
-  const result = await axios.get(
-    `${
-      process.env.REACT_APP_BASE_URL || "http://seoul-cyber-punk.herokuapp.com/"
-    }${apiUrl}`,
-    {
-      withCredentials: true,
-    }
-  );
+  const result = await axios.get(`${process.env.REACT_APP_BASE_URL}${apiUrl}`, {
+    withCredentials: true,
+  });
 
   if (!result) {
     throw new Error("ERROR");
