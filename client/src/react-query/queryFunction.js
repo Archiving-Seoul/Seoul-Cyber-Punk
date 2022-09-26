@@ -20,9 +20,20 @@ export async function getAllInfo() {
   return mood;
 }
 
-export async function getYoutube() {
-  const res = await Api.get("/api/youtube");
-  const result = await res.data;
+export async function getReviewData() {
+  const resYoutube = await Api.get("/api/review/youtube");
+  const youtubeResult = await resYoutube.data;
+  const newYoutube = youtubeResult.map((el) => {
+    return { ...el, tab: "youtube" };
+  });
+  const blogs = await getBlog();
+  const result = newYoutube.concat(blogs);
   console.log("요청");
   return result;
+}
+
+async function getBlog() {
+  const resBlog = await Api.get("/api/review/blog");
+  const blogResult = await resBlog.data;
+  return blogResult;
 }

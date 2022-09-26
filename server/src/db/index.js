@@ -17,3 +17,4 @@ db.on("error", (error) =>
 export * from "./models/tour-model.js";
 export * from "./models/about-model.js";
 export * from "./models/youtube-model.js";
+export * from "./models/blog-model.js";

@@ -10,10 +10,10 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
       )}
       <BlockBox>
         <GridBox>
-          {data.map((el, idx) => {
+          {data.map((el) => {
             return (
               <PhotoBlock
-                key={idx}
+                key={el._id}
                 tab={el.tab}
                 setClickedModal={setClickedModal}
                 imgURL={el.imgURL}
@@ -23,14 +23,6 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
             );
           })}
         </GridBox>
-        <MainPhotoBox>
-          {/* <PhotoBlock
-            setClickedModal={setClickedModal}
-            imgURL={data[6].imgURL}
-            title={data[6].title}
-            linkURL={data[6].videoId}
-          /> */}
-        </MainPhotoBox>
         <LogoTitle>CYBERPUNKSEOUL</LogoTitle>
       </BlockBox>
     </>
