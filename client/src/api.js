@@ -4,7 +4,7 @@ async function get(apiUrl) {
   const result = await axios.get(
     `${
       process.env.REACT_APP_BASE_URL ||
-      " https://seoul-cyber-punk.herokuapp.com/"
+      " https://seoul-cyber-punk.herokuapp.com"
     }${apiUrl}`,
     {
       withCredentials: true,
