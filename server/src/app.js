@@ -1,10 +1,8 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-
 import { tourRouter } from "./routers/tour-router";
 import { aboutRouter } from "./routers/about-router";
-import { reviewRouter } from "./routers/review-router";
 
 import bodyParser from "body-parser";
 
@@ -27,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/about", aboutRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/spot", tourRouter);
-app.use("/api/admin", adminRouter);
 
 app.use(express.static(path.join(__dirname, "../build")));
 app.get("/*", (req, res) => {
