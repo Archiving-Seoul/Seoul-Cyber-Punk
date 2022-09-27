@@ -4,6 +4,7 @@ import path from "path";
 import {tourRouter} from "./routers/tour-router";
 import {aboutRouter} from "./routers/about-router";
 import {youtubeRouter} from "./routers/youtube-router";
+import {adminRouter} from "./routers/admin-router.js";
 
 import bodyParser from "body-parser";
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use("/api/about", aboutRouter);
 app.use("/api/youtube", youtubeRouter);
 app.use("/api/spot", tourRouter);
+app.use("/api/admin", adminRouter);
 
 app.use(express.static(path.join(__dirname, "../build")));
 app.get("/*", (req, res) => {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label>이름</label>
+      <input type="text" id="name" />
+    </div>
+    <div>
+      <label>설명</label>
+      <input type="text" id="description" />
+    </div>
+    <div>
+      <label>주소</label>
+      <input type="text" id="address" />
+    </div>
+    <div>
+      <label>이미지</label>
+      <input type="file" id="img" />
+    </div>
+    <div>
+      <label>카테고리</label>
+      <select id="category">
+        <option>popular</option>
+        <option>funny</option>
+        <option>calm</option>
+      </select>
+    </div>
+    <button>create</button>
+    <script defer>
+      const button = document.querySelector("button");
+      const name = document.querySelector("#name");
+      const description = document.querySelector("#description");
+      const address = document.querySelector("#address");
+      const img = document.querySelector("#img");
+      const category = document.querySelector("#category");
+
+      button.addEventListener("click", create);
+      img.addEventListener("change", addImg);
+
+      async function addImg() {
+        const formData = new FormData();
+        await formData.append("src", img.files[0]);
+        const res = await fetch("/api/spot", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        const imgURL = data.imgURL;
+        window.localStorage.setItem("imgURL", imgURL);
+      }
+
+      async function create() {
+        const url = window.localStorage.getItem("imgURL");
+        const req = {
+          name: name.value,
+          description: description.value,
+          address: address.value,
+          category: category.value,
+          imgURL: url,
+        };
+        const res = await fetch("api/spot/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(req),
+        });
+        const data = await res.json();
+        console.log("post응답", data);
+      }
+    </script>
+  </body>
+</html>
