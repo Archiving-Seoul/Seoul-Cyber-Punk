@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import { useEffect, useState } from "react";
-import * as Api from "../api";
-import { DUMMY_DATA } from "../assets/dummy";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getYoutube } from "../react-query/queryFunction";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getReviewData } from "../react-query/queryFunction";
 import { Loading } from "../components/Loading";
 
 function Review() {
@@ -14,14 +12,9 @@ function Review() {
 
   const { isLoading, data, isError, error, isFetching } = useQuery(
     ["review"],
-    getYoutube,
-    {
-      staleTime: 600 * 1000,
-      select: (data) => {
-        return data.concat(DUMMY_DATA);
-      },
-    }
+    getReviewData
   );
+
   const [categoryData, setCategoryData] = useState([]);
 
   const [tab, setTab] = useState("all");
@@ -84,7 +77,6 @@ function Review() {
             onClick={() => {
               setTab("youtube");
               navigate("?tab=youtube");
-
               clickHandler("youtube");
             }}
           >
