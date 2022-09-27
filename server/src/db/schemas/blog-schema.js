@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const YoutubeSchema = new Schema(
+const BlogSchema = new Schema(
   {
+    tab: {
+      type: String,
+      required: true,
+    },
     linkURL: {
       type: String,
       required: true,
@@ -17,9 +21,9 @@ const YoutubeSchema = new Schema(
     },
   },
   {
-    collection: "youtube",
+    collection: "blog",
     timestamps: true,
   }
 );
 
-export { YoutubeSchema };
+export { BlogSchema };

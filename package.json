@@ -1,0 +1,27 @@
+{
+  "name": "seoul-cyber-punk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "16.16.0",
+    "npm": "8.11.0"
+  },
+  "scripts": {
+    "client-build": "cd client && npm ci && npm run build && cd ../",
+    "server-build": "cd server && npm ci --dev && cd ../ ",
+    "heroku-prebuild": "npm run client-build && npm run server-build && mv ./client/build ./server/build",
+    "start": "cd server && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Archiving-Seoul/Seoul-Cyber-Punk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Archiving-Seoul/Seoul-Cyber-Punk/issues"
+  },
+  "homepage": "https://github.com/Archiving-Seoul/Seoul-Cyber-Punk#readme"
+}
