@@ -1,10 +1,12 @@
 import {useEffect, useState} from "react";
+import Slider from "react-slick";
 import styled, {keyframes} from "styled-components";
 import Modal from "./Modal";
 
 function SpotList({spots, title}) {
   const [modal, setModal] = useState(false);
   const [activeData, setActiveData] = useState({});
+  const [activeArrow, setActiveArrow] = useState(false);
   function closeModal() {
     document.body.style.overflow = "unset";
     setModal((prev) => !prev);
@@ -21,9 +23,17 @@ function SpotList({spots, title}) {
           data={activeData}
         ></Modal>
       )}
-      <Wrapper>
+      <Wrapper
+        onMouseOver={() => {
+          setActiveArrow(true);
+        }}
+        onMouseOut={() => {
+          setActiveArrow(false);
+        }}
+        active={activeArrow}
+      >
         <CategoryName>{title}</CategoryName>
-        <Thumnails>
+        <StyledSlider {...settings}>
           {spots &&
             spots.map((ele, idx) => (
               <ThumBox
@@ -38,17 +48,27 @@ function SpotList({spots, title}) {
                 <ThumText>{ele.name}</ThumText>
               </ThumBox>
             ))}
-        </Thumnails>
+        </StyledSlider>
       </Wrapper>
     </>
   );
 }
+
+const settings = {
+  className: "slider variable-width",
+  dots: true,
+  infinite: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  variableWidth: true,
+};
+
 const Wrapper = styled.div`
   position: relative;
   top: -70px;
   margin: 30px auto;
   /* border: 1px white solid; */
-  width: 1396px;
+  /* width: 1396px; */
   height: 238px;
   padding-left: 15px;
   box-sizing: border-box;
@@ -59,37 +79,72 @@ const CategoryName = styled.div`
   line-height: 24px;
   padding-top: 20px;
 `;
-const Thumnails = styled.div`
+const StyledSlider = styled(Slider)`
   width: 100%;
   margin: 25px 0;
-  overflow: scroll;
-  overflow: auto;
-  display: flex;
+  /* overflow: scroll; */
+  /* overflow: auto; */
+  /* display: flex;
   white-space: nowrap;
   flex-direction: row;
   align-items: flex-start;
-  gap: 14px;
+  gap: 14px; */
+  .slick-list {
+    &:hover {
+    }
+  }
+  .slick-slide {
+    width: 324px !important;
+    padding-right: 20px;
+  }
+  .slick-arrow {
+    display: none !important;
+  }
+  .slick-disabled {
+    opacity: 0.5;
+  }
+  .slick-prev {
+    z-index: 99;
+    position: fixed;
+    left: 15px;
+    top: 606px;
+    width: 40px;
+    height: 240px;
+    background: rgba(0, 0, 0, 0.8);
+    /* float: left; */
+  }
+  .slick-next {
+    z-index: 99;
+    position: fixed;
+    right: 0px;
+    top: 605px;
+    width: 40px;
+    height: 240px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  .slick-disabled {
+    display: none;
+  }
 `;
 const hoverIn = keyframes`
 from {
-  width: 320px;
-  height: 188px;
+  transform: scale(1);
   }
   to {
-    width: 360px;
-    height: 228px;
+    width: 335px;
+    height: 203px;
     z-index: 999;
   }
   `;
 const hoverOut = keyframes`
   from {
-    width: 360px;
-    height: 228px;
+    width: 335px;
+    height: 203px;
+    z-index: 999;
     opacity: 0.2;
   }
   to {
-    width: 320px;
-   height: 188px;
+    transform: scale(1);
   }
 `;
 
