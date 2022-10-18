@@ -97,11 +97,8 @@ const StyledSlider = styled(Slider)`
     width: 324px !important;
     padding-right: 20px;
   }
-  .slick-arrow {
-    display: none !important;
-  }
   .slick-disabled {
-    opacity: 0.5;
+    opacity: 0.1;
   }
   .slick-prev {
     z-index: 99;
