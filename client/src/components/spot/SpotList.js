@@ -15,7 +15,7 @@ function SpotList({spots, title}) {
     console.log(spots, "스팟");
   }, []);
   return (
-    <>
+    <div>
       {modal && (
         <Modal
           isModal={modal}
@@ -50,7 +50,7 @@ function SpotList({spots, title}) {
             ))}
         </StyledSlider>
       </Wrapper>
-    </>
+    </div>
   );
 }
 
@@ -102,9 +102,7 @@ const StyledSlider = styled(Slider)`
   }
   .slick-prev {
     z-index: 99;
-    position: fixed;
-    left: 15px;
-    top: 606px;
+    left: 0;
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);
@@ -112,9 +110,7 @@ const StyledSlider = styled(Slider)`
   }
   .slick-next {
     z-index: 99;
-    position: fixed;
     right: 0px;
-    top: 605px;
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);

@@ -17,10 +17,11 @@ function Spot() {
   }
   const {isLoading, data} = useQuery([`${"popular"}`], () => getSpot(), {
     select: (data) => {
-      const tmpData = data.data.filter((ele) =>
+      const popularData = data.data.filter((ele) =>
         ele.category.includes("popular")
       );
-      return tmpData;
+      const mzData = data.data.filter((ele) => ele.category.includes("mz"));
+      return [popularData, mzData];
     },
   });
   console.log(data, isLoading);
@@ -28,7 +29,8 @@ function Spot() {
     <Container>
       <Header isAbout={true} />
       <Preview />
-      {!isLoading && <SpotList spots={data} title="Most Popular" />}
+      {!isLoading && <SpotList spots={data[0]} title="Most Popular" />}
+      {!isLoading && <SpotList spots={data[1]} title="Hot place for MZ" />}
       {/* <SpotList spots={data} title="Hot place for MZ" /> */}
       {/* <SpotList spots={data} title="calm" /> */}
       {/* <SpotList spots={data} title="Fun" /> */}
