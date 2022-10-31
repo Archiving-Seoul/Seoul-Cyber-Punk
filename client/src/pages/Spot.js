@@ -17,25 +17,29 @@ function Spot() {
   }
   const {isLoading, data} = useQuery([`${"popular"}`], () => getSpot(), {
     select: (data) => {
-      const popularData = data.data.filter((ele) =>
+      const popular = data.data.filter((ele) =>
         ele.category.includes("popular")
       );
-      const mzData = data.data.filter((ele) => ele.category.includes("mz"));
-      return [popularData, mzData];
+      const mz = data.data.filter((ele) => ele.category.includes("mz"));
+      const calm = data.data.filter((ele) => ele.category.includes("calm"));
+      const funny = data.data.filter((ele) => ele.category.includes("funny"));
+      const movie = data.data.filter((ele) => ele.category.includes("movie"));
+      const traditional = data.data.filter((ele) =>
+        ele.category.includes("traditional")
+      );
+      return [popular, mz, calm, funny, movie, traditional];
     },
   });
-  console.log(data, isLoading);
   return (
     <Container>
       <Header isAbout={true} />
       <Preview />
       {!isLoading && <SpotList spots={data[0]} title="Most Popular" />}
+      {!isLoading && <SpotList spots={data[2]} title="calm" />}
+      {!isLoading && <SpotList spots={data[3]} title="Fun" />}
       {!isLoading && <SpotList spots={data[1]} title="Hot place for MZ" />}
-      {/* <SpotList spots={data} title="Hot place for MZ" /> */}
-      {/* <SpotList spots={data} title="calm" /> */}
-      {/* <SpotList spots={data} title="Fun" /> */}
-      {/* <SpotList spots={data} title="Traditional" /> */}
-      {/* <SpotList spots={data} title="Movie spot" /> */}
+      {!isLoading && <SpotList spots={data[4]} title="Movie spot" />}
+      {!isLoading && <SpotList spots={data[5]} title="Traditional" />}
     </Container>
   );
 }
