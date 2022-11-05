@@ -1,6 +1,8 @@
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
-function PhotoBlock({ title, imgURL, id, linkURL, setClickedModal, tab }) {
+function PhotoBlock({title, imgURL, id, linkURL, setClickedModal, tab}) {
+  const navigate = useNavigate();
   return (
     <>
       {tab === "web" ? (
@@ -16,8 +18,9 @@ function PhotoBlock({ title, imgURL, id, linkURL, setClickedModal, tab }) {
           target="_blank"
           onClick={() => {
             setClickedModal((cur) => {
-              return { ...cur, tab, id: linkURL, isModal: true };
+              return {...cur, tab, id: linkURL, isModal: true};
             });
+            navigate(`?${linkURL}`);
           }}
         >
           <ImgBox>
@@ -54,9 +57,9 @@ const Photo = styled.div`
   color: white;
   position: relative;
   border-radius: 20px;
-  /* grid-column: ${({ id }) =>
+  /* grid-column: ${({id}) =>
     id === "width_long" ? "3/5" : id === "height_long" ? "1/2" : "0"};
-  grid-row: ${({ id }) =>
+  grid-row: ${({id}) =>
     id === "width_long" ? "2/3" : id === "height_long" ? "1/3" : "0"}; */
   cursor: pointer;
   :hover {

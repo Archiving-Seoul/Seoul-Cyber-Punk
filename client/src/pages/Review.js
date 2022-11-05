@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getReviewData } from "../react-query/queryFunction";
-import { Loading } from "../components/Loading";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {getReviewData} from "../react-query/queryFunction";
+import {Loading} from "../components/Loading";
 
 function Review() {
   const navigate = useNavigate();
 
-  const { isLoading, data, isError, error, isFetching } = useQuery(
+  const {isLoading, data, isError, error, isFetching} = useQuery(
     ["review"],
     getReviewData
   );
@@ -123,13 +123,13 @@ const SocialMenu = styled.ul`
     opacity: 0.5;
   }
   #all {
-    color: ${({ tab }) => (tab === "all" ? "red" : "white")};
+    color: ${({tab}) => (tab === "all" ? "red" : "white")};
   }
   #web {
-    color: ${({ tab }) => (tab === "web" ? "red" : "white")};
+    color: ${({tab}) => (tab === "web" ? "red" : "white")};
   }
   #youtube {
-    color: ${({ tab }) => (tab === "youtube" ? "red" : "white")};
+    color: ${({tab}) => (tab === "youtube" ? "red" : "white")};
   }
 `;
 export default Review;

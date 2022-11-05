@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import YouTube from "react-youtube";
-export default function Modal({ clickedModal, setClickedModal }) {
+import {useNavigate} from "react-router-dom";
+export default function Modal({clickedModal, setClickedModal}) {
+  const navigate = useNavigate();
   const option = {
     height: "100%",
     width: "100%",
@@ -14,8 +16,9 @@ export default function Modal({ clickedModal, setClickedModal }) {
     <ModalLayer
       onClick={() => {
         setClickedModal((cur) => {
-          return { ...cur, isModal: false };
+          return {...cur, isModal: false};
         });
+        navigate("?tab=youtube");
       }}
     >
       <ModalBox>

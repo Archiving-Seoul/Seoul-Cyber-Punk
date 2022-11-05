@@ -2,7 +2,9 @@ import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 import Modal from "./Modal";
 
-function ImageBlocks({ data, clickedModal, setClickedModal }) {
+import {useNavigate} from "react-router-dom";
+
+function ImageBlocks({data, clickedModal, setClickedModal}) {
   return (
     <>
       {clickedModal.tab === "youtube" && clickedModal.isModal && (
