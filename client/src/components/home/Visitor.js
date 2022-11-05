@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRightLong} from "@fortawesome/free-solid-svg-icons";
 
 function Visitor() {
+  const navigate = useNavigate();
   return (
     <FullContainer>
       <Container>
@@ -41,11 +43,20 @@ function Visitor() {
         </VisitBox>
         <hr></hr>
         <LinkBox>
-          <div>Lets see what others thinking</div>
+          <div
+            onClick={() => {
+              navigate("/review");
+            }}
+          >
+            Lets see what others thinking
+          </div>
           <FontAwesomeIcon
             icon={faArrowRightLong}
             size="2x"
             className="rightArrow"
+            onClick={() => {
+              navigate("/review");
+            }}
           />
         </LinkBox>
       </Container>
