@@ -89,23 +89,24 @@ const StyledSlider = styled(Slider)`
   flex-direction: row;
   align-items: flex-start;
   gap: 14px; */
-  .slick-list {
-    &:hover {
+  &:hover {
+    .slick-prev,
+    .slick-next {
+      opacity: 1;
     }
   }
   .slick-slide {
     width: 324px !important;
     padding-right: 20px;
   }
-  .slick-disabled {
-    opacity: 0.1;
-  }
+
   .slick-prev {
     z-index: 99;
     left: 0;
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
     /* float: left; */
   }
   .slick-next {
@@ -114,9 +115,10 @@ const StyledSlider = styled(Slider)`
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
   }
   .slick-disabled {
-    display: none;
+    display: none !important;
   }
 `;
 const hoverIn = keyframes`
