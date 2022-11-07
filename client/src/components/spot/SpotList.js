@@ -117,6 +117,17 @@ const StyledSlider = styled(Slider)`
     background: rgba(0, 0, 0, 0.8);
     opacity: 0;
   }
+  .slick-next:before {
+    content: ">";
+    font-size: 55px;
+    font-weight: 600;
+  }
+  .slick-prev:before {
+    content: "<";
+    font-size: 55px;
+    font-weight: 600;
+  }
+
   .slick-disabled {
     display: none !important;
   }
