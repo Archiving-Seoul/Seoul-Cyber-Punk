@@ -1,8 +1,9 @@
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 function PhotoBlock({title, imgURL, id, linkURL, setClickedModal, tab}) {
   const navigate = useNavigate();
+
   return (
     <>
       {tab === "web" ? (
@@ -13,6 +14,7 @@ function PhotoBlock({title, imgURL, id, linkURL, setClickedModal, tab}) {
           <p>{title}</p>
         </StyledLink>
       ) : tab === "youtube" ? (
+        // <Link to={`/review/${linkURL}`}>
         <Photo
           id={id}
           target="_blank"
@@ -20,7 +22,7 @@ function PhotoBlock({title, imgURL, id, linkURL, setClickedModal, tab}) {
             setClickedModal((cur) => {
               return {...cur, tab, id: linkURL, isModal: true};
             });
-            navigate(`?${linkURL}`);
+            // navigate(`/review/${linkURL}`);
           }}
         >
           <ImgBox>
@@ -29,6 +31,7 @@ function PhotoBlock({title, imgURL, id, linkURL, setClickedModal, tab}) {
           {/* <p>{title}</p> */}
         </Photo>
       ) : (
+        // </Link>
         ""
       )}
     </>

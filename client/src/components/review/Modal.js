@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import YouTube from "react-youtube";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 export default function Modal({clickedModal, setClickedModal}) {
   const navigate = useNavigate();
+  const {modalURL} = useParams();
+  console.log(modalURL);
   const option = {
     height: "100%",
     width: "100%",
@@ -18,7 +20,7 @@ export default function Modal({clickedModal, setClickedModal}) {
         setClickedModal((cur) => {
           return {...cur, isModal: false};
         });
-        navigate("?tab=youtube");
+        navigate("/review?tab=youtube");
       }}
     >
       <ModalBox>

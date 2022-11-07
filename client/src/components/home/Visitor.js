@@ -35,7 +35,11 @@ function Visitor() {
         <VisitBox>
           <SubTitle color="black">BLOG</SubTitle>
           <SubTitle weight="light">APR 7 2021</SubTitle>
-          <Content>
+          <Content
+            onClick={() => {
+              navigate("/review?7T5Qh2jmjIw");
+            }}
+          >
             10 Things to Know
             <br />
             Before Travelling to Seoul Alone

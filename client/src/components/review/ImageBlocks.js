@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 import Modal from "./Modal";
 
-import {useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 function ImageBlocks({data, clickedModal, setClickedModal}) {
   return (
@@ -14,14 +14,17 @@ function ImageBlocks({data, clickedModal, setClickedModal}) {
         <GridBox>
           {data.map((el) => {
             return (
-              <PhotoBlock
-                key={el._id}
-                tab={el.tab}
-                setClickedModal={setClickedModal}
-                imgURL={el.imgURL}
-                title={el.title}
-                linkURL={el.linkURL}
-              />
+              <>
+                <PhotoBlock
+                  key={el._id}
+                  tab={el.tab}
+                  setClickedModal={setClickedModal}
+                  id={el._id}
+                  imgURL={el.imgURL}
+                  title={el.title}
+                  linkURL={el.linkURL}
+                />
+              </>
             );
           })}
         </GridBox>
