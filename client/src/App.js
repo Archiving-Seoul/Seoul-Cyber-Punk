@@ -5,6 +5,10 @@ import About from "./pages/About";
 import Review from "./pages/Review";
 import Admin from "./pages/Admin";
 import {ScrollPrac} from "./pages/Scroll";
+import Modal from "./components/review/Modal";
+import ImageBlocks from "./components/review/ImageBlocks";
+
+import {useState} from "react";
 
 function App() {
   return (
@@ -13,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/spot" element={<Spot />} />
         <Route path="/about" element={<About />} />
-        <Route path="/review/*" element={<Review />} />
+        <Route path="/review" element={<Review />}></Route>
         <Route path="/scroll" element={<ScrollPrac />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>

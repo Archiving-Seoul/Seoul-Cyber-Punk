@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllInfo } from "../react-query/queryFunction";
+import {useQuery} from "@tanstack/react-query";
+import {getAllInfo} from "../react-query/queryFunction";
 
 import AboutMain from "../components/about/AboutMain";
 import AboutIntroMap from "../components/about/aboutIntroMap/AboutIntroMap";
@@ -9,43 +9,49 @@ import DayNightMain from "../components/about/DayNightMain";
 import GallerySlider from "../components/about/gallerySlider/GallerySlider";
 import Favorite from "../components/about/favorite/Favorite";
 import Footer from "../components/about/Footer";
-import { Loading } from "../components/Loading";
+import {Loading} from "../components/Loading";
 
 function About() {
-  const { isLoading, isError, data, error } = useQuery(["about"], getAllInfo);
+  const {isLoading, isError, data, error} = useQuery(["about"], getAllInfo);
 
-  if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <>
+  //       <Loading />
+  //     </>
+  //   );
+  // }
   if (isError) {
     return <h1>Error: ${error.message}</h1>;
   }
 
   return (
     <>
-      <AboutMain />
-      <AboutIntroMap />
-      <AboutDescription />
-      <OldNewMain />
-      <GallerySlider
-        isOld={true}
-        combineMood={data.combineMood_1}
-        firstImg={data.oldMood}
-        secondImg={data.newMood}
-      />
-      <DayNightMain />
-      <GallerySlider
-        isOld={false}
-        combineMood={data.combineMood_2}
-        firstImg={data.dayMood}
-        secondImg={data.nightMood}
-      />
-      <Favorite />
-      <Footer />
+      {!isLoading ? (
+        <>
+          <AboutMain />
+          <AboutIntroMap />
+          <AboutDescription />
+          <OldNewMain />
+          <GallerySlider
+            isOld={true}
+            combineMood={data.combineMood_1}
+            firstImg={data.oldMood}
+            secondImg={data.newMood}
+          />
+          <DayNightMain />
+          <GallerySlider
+            isOld={false}
+            combineMood={data.combineMood_2}
+            firstImg={data.dayMood}
+            secondImg={data.nightMood}
+          />
+          <Favorite />
+          <Footer />
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

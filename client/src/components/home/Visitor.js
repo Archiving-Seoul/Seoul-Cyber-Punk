@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRightLong} from "@fortawesome/free-solid-svg-icons";
 
 function Visitor() {
+  const navigate = useNavigate();
   return (
     <FullContainer>
       <Container>
@@ -17,7 +19,12 @@ function Visitor() {
         <VisitBox>
           <SubTitle color="black">BLOG</SubTitle>
           <SubTitle weight="light">NOV 24 2021</SubTitle>
-          <Content>14 Best Things To Do In Seoul</Content>
+          <Content
+            href="https://handluggageonly.co.uk/2017/04/01/14-fantastic-things-seoul-south-korea/"
+            target="_blank"
+          >
+            14 Best Things To Do In Seoul
+          </Content>
         </VisitBox>
         <hr></hr>
         <VisitBox>
@@ -41,11 +48,20 @@ function Visitor() {
         </VisitBox>
         <hr></hr>
         <LinkBox>
-          <div>Lets see what others thinking</div>
+          <div
+            onClick={() => {
+              navigate("/review");
+            }}
+          >
+            Lets see what others thinking
+          </div>
           <FontAwesomeIcon
             icon={faArrowRightLong}
             size="2x"
             className="rightArrow"
+            onClick={() => {
+              navigate("/review");
+            }}
           />
         </LinkBox>
       </Container>
@@ -96,7 +112,8 @@ const Title = styled.div`
   font-size: 48px;
   margin: 24px 0 36px 0;
 `;
-const Content = styled.div`
+const Content = styled.a`
+  display: block;
   font-weight: 700;
   font-size: 28px;
   color: #ff0000;

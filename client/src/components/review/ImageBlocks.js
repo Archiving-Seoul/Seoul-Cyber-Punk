@@ -2,7 +2,9 @@ import styled from "styled-components";
 import PhotoBlock from "./PhotoBlock";
 import Modal from "./Modal";
 
-function ImageBlocks({ data, clickedModal, setClickedModal }) {
+import {useParams} from "react-router-dom";
+
+function ImageBlocks({data, clickedModal, setClickedModal}) {
   return (
     <>
       {clickedModal.tab === "youtube" && clickedModal.isModal && (
@@ -10,16 +12,20 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
       )}
       <BlockBox>
         <GridBox>
-          {data.map((el) => {
+          {data.map((el, idx) => {
             return (
-              <PhotoBlock
-                key={el._id}
-                tab={el.tab}
-                setClickedModal={setClickedModal}
-                imgURL={el.imgURL}
-                title={el.title}
-                linkURL={el.linkURL}
-              />
+              <>
+                <PhotoBlock
+                  key={el._id}
+                  tab={el.tab}
+                  setClickedModal={setClickedModal}
+                  id={el._id}
+                  imgURL={el.imgURL}
+                  title={el.title}
+                  linkURL={el.linkURL}
+                  boxNum={idx}
+                />
+              </>
             );
           })}
         </GridBox>
@@ -28,7 +34,10 @@ function ImageBlocks({ data, clickedModal, setClickedModal }) {
     </>
   );
 }
-
+const Margin = styled.div`
+  width: 100%;
+  border: 1px solid white;
+`;
 const BlockBox = styled.div`
   width: 1352px;
   height: 1229px;
@@ -51,6 +60,7 @@ const MainPhotoBox = styled.div`
 `;
 
 const LogoTitle = styled.h1`
+  display: block;
   font-weight: 400;
   font-size: 95px;
   line-height: 98px;

@@ -15,7 +15,7 @@ function SpotList({spots, title}) {
     console.log(spots, "스팟");
   }, []);
   return (
-    <>
+    <div>
       {modal && (
         <Modal
           isModal={modal}
@@ -50,7 +50,7 @@ function SpotList({spots, title}) {
             ))}
         </StyledSlider>
       </Wrapper>
-    </>
+    </div>
   );
 }
 
@@ -89,41 +89,47 @@ const StyledSlider = styled(Slider)`
   flex-direction: row;
   align-items: flex-start;
   gap: 14px; */
-  .slick-list {
-    &:hover {
+  &:hover {
+    .slick-prev,
+    .slick-next {
+      opacity: 1;
     }
   }
   .slick-slide {
     width: 324px !important;
     padding-right: 20px;
   }
-  .slick-arrow {
-    display: none !important;
-  }
-  .slick-disabled {
-    opacity: 0.5;
-  }
+
   .slick-prev {
     z-index: 99;
-    position: fixed;
-    left: 15px;
-    top: 606px;
+    left: 0;
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
     /* float: left; */
   }
   .slick-next {
     z-index: 99;
-    position: fixed;
     right: 0px;
-    top: 605px;
     width: 40px;
     height: 240px;
     background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
   }
+  .slick-next:before {
+    content: ">";
+    font-size: 55px;
+    font-weight: 600;
+  }
+  .slick-prev:before {
+    content: "<";
+    font-size: 55px;
+    font-weight: 600;
+  }
+
   .slick-disabled {
-    display: none;
+    display: none !important;
   }
 `;
 const hoverIn = keyframes`
