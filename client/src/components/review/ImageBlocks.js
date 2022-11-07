@@ -12,7 +12,7 @@ function ImageBlocks({data, clickedModal, setClickedModal}) {
       )}
       <BlockBox>
         <GridBox>
-          {data.map((el) => {
+          {data.map((el, idx) => {
             return (
               <>
                 <PhotoBlock
@@ -23,6 +23,7 @@ function ImageBlocks({data, clickedModal, setClickedModal}) {
                   imgURL={el.imgURL}
                   title={el.title}
                   linkURL={el.linkURL}
+                  boxNum={idx}
                 />
               </>
             );
@@ -33,7 +34,10 @@ function ImageBlocks({data, clickedModal, setClickedModal}) {
     </>
   );
 }
-
+const Margin = styled.div`
+  width: 100%;
+  border: 1px solid white;
+`;
 const BlockBox = styled.div`
   width: 1352px;
   height: 1229px;
@@ -56,6 +60,7 @@ const MainPhotoBox = styled.div`
 `;
 
 const LogoTitle = styled.h1`
+  display: block;
   font-weight: 400;
   font-size: 95px;
   line-height: 98px;
