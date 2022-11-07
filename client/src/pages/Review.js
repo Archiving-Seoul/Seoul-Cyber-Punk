@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import ImageBlocks from "../components/review/ImageBlocks";
 import Header from "../components/common/Header";
-import {useState} from "react";
-import {useNavigate, Outlet} from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {getReviewData} from "../react-query/queryFunction";
 import {Loading} from "../components/Loading";
@@ -23,6 +23,9 @@ function Review() {
     isModal: false,
     tab: "",
   });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function clickHandler(category) {
     if (category === "all") {
@@ -97,8 +100,6 @@ function Review() {
             setClickedModal={setClickedModal}
           />
         )}
-
-        <Outlet />
       </Container>
     </>
   );
