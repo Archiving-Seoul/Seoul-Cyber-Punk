@@ -4,6 +4,7 @@ import Preview from "../components/spot/Preview";
 import SpotList from "../components/spot/SpotList";
 import * as api from "../api";
 import {useQuery} from "@tanstack/react-query";
+import {Loading} from "../components/Loading";
 
 function Spot() {
   async function getSpot() {
@@ -31,16 +32,22 @@ function Spot() {
     },
   });
   return (
-    <Container>
-      <Header isAbout={true} />
-      <Preview />
-      {!isLoading && <SpotList spots={data[0]} title="Most Popular" />}
-      {!isLoading && <SpotList spots={data[2]} title="calm" />}
-      {!isLoading && <SpotList spots={data[3]} title="Fun" />}
-      {!isLoading && <SpotList spots={data[1]} title="Hot place for MZ" />}
-      {!isLoading && <SpotList spots={data[4]} title="Movie spot" />}
-      {!isLoading && <SpotList spots={data[5]} title="Traditional" />}
-    </Container>
+    <>
+      {!isLoading ? (
+        <Container>
+          <Header isAbout={true} />
+          <Preview />
+          <SpotList spots={data[0]} title="Most Popular" />
+          <SpotList spots={data[2]} title="calm" />
+          <SpotList spots={data[3]} title="Fun" />
+          <SpotList spots={data[1]} title="Hot place for MZ" />
+          <SpotList spots={data[4]} title="Movie spot" />
+          <SpotList spots={data[5]} title="Traditional" />
+        </Container>
+      ) : (
+        <Loading />
+      )}
+    </>
   );
 }
 const Container = styled.div`
