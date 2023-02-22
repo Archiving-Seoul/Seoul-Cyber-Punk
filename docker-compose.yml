@@ -1,0 +1,43 @@
+version: "3"
+services:
+  nginx:
+    build: ./server
+    container_name: nginx
+    restart: always
+    depends_on:
+      - server
+    ports:
+      - 8000:80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - backend
+
+  seoulNode:
+    build: ./server
+    container_name: seoulNode
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 8080:4500
+    networks:
+      - backend
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      # - ./mongo/init.js:/docker-entrypoint-initdb.d/init.js:ro
+      - type: bind
+        source: /var/lib/mongodb
+        target: /data/db
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

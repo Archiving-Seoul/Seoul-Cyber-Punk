@@ -1,9 +1,10 @@
 import axios from "axios";
-
+const PORT_URL = "http://35.76.79.228:3030";
 async function get(apiUrl) {
   const result = await axios.get(
     `${
-      process.env.REACT_APP_BASE_URL || "https://seoul-cyber-punk.herokuapp.com"
+      PORT_URL
+      // process.env.REACT_APP_BASE_URL || "https://seoul-cyber-punk.herokuapp.com"
     }${apiUrl}`,
     {
       withCredentials: true,
@@ -18,43 +19,32 @@ async function get(apiUrl) {
 }
 
 async function post(apiUrl, data) {
-  const result = await axios.post(
-    `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
-    data,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    }
-  );
+  const result = await axios.post(`${PORT_URL}${apiUrl}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   return result;
 }
 
 async function patch(apiUrl, data) {
-  const result = await axios.patch(
-    `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
-    data,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    }
-  );
+  const result = await axios.patch(`${PORT_URL}${apiUrl}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   return result;
 }
 
 async function del(apiUrl) {
-  const result = await axios.delete(
-    `${process.env.REACT_APP_BASE_URL}${apiUrl}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    }
-  );
+  const result = await axios.delete(`${PORT_URL}${apiUrl}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   return result;
 }
 
