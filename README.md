@@ -1,6 +1,6 @@
 # 🌍 SEOUL-CYBER-PUNK
 
-🚀 service-link : https://seoul-cyber-punk.herokuapp.com/
+🚀 service-link : [SEOUL-CYBER-PUNK 배포링크](http://35.76.79.228:8300/)
 
 ## 🔗 1️⃣ 서비스 소개
 
