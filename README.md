@@ -85,8 +85,11 @@
 ## 🔗 6️⃣ 프로젝트 미리보기
 
 <div style="text-align:center">
+[프로젝트 시연영상 ⬇️] <br/>
+<a href="https://www.youtube.com/watch?v=lJHbBNWZQCo">
+<img style="width:600px" src="https://i.ytimg.com/vi/lJHbBNWZQCo/maxresdefault.jpg">
 
-[프로젝트 시연영상 ⬇️]
-[![프로젝트 시연영상](https://i9.ytimg.com/vi_webp/lJHbBNWZQCo/mq2.webp?sqp=CMTl7Z8G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGGUgWihKMA8=&rs=AOn4CLDORoaDzE9PPFMA02WR-ROqps_7iA)](https://www.youtube.com/watch?v=lJHbBNWZQCo)
-
+</img>
+</a>
 </div>
+
