@@ -86,7 +86,7 @@
 
 <div style="text-align:center">
 [프로젝트 시연영상 ⬇️] <br/>
-<a href="https://www.youtube.com/watch?v=lJHbBNWZQCo">
+<a target='_blank' href="https://www.youtube.com/watch?v=lJHbBNWZQCo">
 <img style="width:600px" src="https://i.ytimg.com/vi/lJHbBNWZQCo/maxresdefault.jpg">
 
 </img>
