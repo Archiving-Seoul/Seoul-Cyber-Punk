@@ -12,13 +12,9 @@
 
   ▶️ 텍스트 위주의 정보 제공보다는 **시각적**으로 느낄 수 있도록 하기
 
-  ▶️ 기존의 관광 홍보 사이트와 달리 웹사이트의 전체적인 컨셉을 **뉴트로**를 겨냥한 세기말 감성 -**사이버펑크**-Y2K 로 가져가기
-
 - **기존 웹사이트와의 차별점**
 
   💬 관광 정보 제공 보다는 서울 여행을 할지 말지 고민하는 사람들에게 시각적으로 홍보한다.
-
-  💬 코로나로 인해 관광이 어려운 상황에서 서울 감성을 느낄 수 있도록 한다.
 
   💬 장소 명소 별로 정보 제공 보다는 이미지화 시키기 (비주얼, 이미지 아카이빙) + 아주 간단한 정보
 
@@ -49,11 +45,15 @@
 
 ## 🔗 4️⃣ 팀원소개
 
-| 이름      | 담당업무                       |
-| --------- | ------------------------------ |
-| ✨ 경지윤 | HOME, SPOT (풀스택 개발), 배포 |
-| ✨ 김세희 | ABOUT, REVIEW (풀스택 개발)    |
-| 🙋🏻‍♀️ 이예나 | UX/UI 디자이너                 |
+<table>
+  <tbody >
+    <tr >
+      <td align="center"><a href="https://github.com/JiyoonZ"><img style="margin-top: 20px;" src="https://avatars.githubusercontent.com/u/81758576?v=4" width="100px;" alt=""/><br /><sub><b>경지윤</b></sub></a><ul><li>프로젝트 기획 및 배포</li><li>HOME, SPOT (풀스택 개발)</li><br /></td>
+      <td align="center"><a href="https://github.com/emillly25"><img style="margin-top: 20px; border-radius: 50%;" src="https://avatars.githubusercontent.com/u/89740574?v=4" width="100px;" alt=""/><br /><sub><b>김세희</b></sub></a><ul><li>ABOUT, REVIEW (풀스택 개발)</li><br /></td>
+      <td align="center"><a href="#"><img style="border-radius: 50%; margin-top: 20px;" src="https://avatars.githubusercontent.com/u/79842380?v=4" width="100px; height="100px" alt=""/><br /><sub><b>이예나</b></a><ul><li>프로젝트 기획</li><li>UX/UI 디자인 및 피그마</li></sub><br /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## 🔗 5️⃣ 이슈 및 개선사항
 
@@ -67,17 +67,26 @@
   - about / spot / review 페이지 비동기 api 호출로 페이지를 이동할때마다 로딩 발생
   - 사용성을 향상시키기 위해 데이터를 캐싱하여 상태를 관리하는 react-query 도입
 
-- 배포
-
-  - 배포 후 외부 api 를 사용한 유투브 부분이 timeout 으로 503 에러 발생
-  - heroku 특성상 외부 api 를 사용하여 데이터를 가공할 경우 백그라운드 작업이 필요하다고함(redis)
-  - 관리자 페이지에 따로 검색 키워드를 통해 유투브 데이터를 업데이트 하여 DB에 반영하도록 수정
-
 - 디자이너와 협업
 
   - open API 를 사용으로 특정 사진을 사용할 수 없어 디자이너와 협의해야하는 이슈 발생
   - 디자이너가 제시한 마크업 관련 피드백을 꾸준히 받음
 
+- 배포
+
+  - heroku 유료화 인해 docker+ AWS ec2 으로 재배포
+  - 프로젝트 환경을 docke 이미지로 생성 후 docker hub로 push, AWS ec2에서 이미지를 Pull 해와서 배포함
+  - 코드가 변경될때마다 위의 과정들을 반복해야한다는 점에서 배포 자동화의 필요성을 느낌. 추후 개선 및 공부가 필요
+
 - 추후 react-query의 useInfiniteQuery 로 무한스크롤 구현
   - api 호출시에 받아오는 데이터가 클수록 렌더링이 느려짐
   - 이를 개선하기 위해 데이터의 갯수를 제한하여 받아오는 무한 스크롤이나 페이지네이션이 필요하다고 판단
+
+## 🔗 6️⃣ 프로젝트 미리보기
+
+<div style="text-align:center">
+
+[프로젝트 시연영상 ⬇️]
+[![프로젝트 시연영상](https://i9.ytimg.com/vi_webp/lJHbBNWZQCo/mq2.webp?sqp=CMTl7Z8G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGGUgWihKMA8=&rs=AOn4CLDORoaDzE9PPFMA02WR-ROqps_7iA)](https://www.youtube.com/watch?v=lJHbBNWZQCo)
+
+</div>
